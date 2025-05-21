@@ -185,93 +185,41 @@
   <script src="js/gettracking.js"></script>
   <script src="js/addtracking.js"></script>
   <script>
-    let logData = [];
-    let historyData = [];
+   document.getElementById('shipmentForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    function loadShipment() {
-      const trackingNumber = document.getElementById("TrackingNumber").value;
-      if (trackingNumber) getTracking(trackingNumber);
-    }
+  const shipmentData = {
+    TrackingNumber: document.getElementById('TrackingNumber').value,
+    Status: document.getElementById('Status').value,
+    ShipperName: document.getElementById('ShipperName').value,
+    ShipperPhone: document.getElementById('ShipperPhone').value,
+    ShipperAddress: document.getElementById('ShipperAddress').value,
+    ShipperEmail: document.getElementById('ShipperEmail').value,
+    ReceiverName: document.getElementById('ReceiverName').value,
+    ReceiverPhone: document.getElementById('ReceiverPhone').value,
+    ReceiverAddress: document.getElementById('ReceiverAddress').value,
+    ReceiverEmail: document.getElementById('ReceiverEmail').value,
+    EstimatedDeliveryDate: document.getElementById('EstimatedDeliveryDate').value,
+    ShippedDate: document.getElementById('ShippedDate').value,
+    FlightNumber: document.getElementById('FlightNumber').value,
+    PackageWeight: document.getElementById('PackageWeight').value,
+    Mode: document.getElementById('Mode').value,
+    Product: document.getElementById('Product').value,
+    Quantity: document.getElementById('Quantity').value,
+    Payment: document.getElementById('Payment').value,
+    TotalFreight: document.getElementById('TotalFreight').value,
+    log: getLogArray(), // assume this function returns array of {date, description}
+    history: getHistoryArray() // assume this function returns array of structured history entries
+  };
 
-    function addLogEntry() {
-      const date = document.getElementById("logDate").value;
-      const desc = document.getElementById("logDescription").value;
-      if (date && desc) {
-        const entry = `${date}: ${desc}`;
-        logData.push({ date, description: desc });
-        document.getElementById("log").value += entry + "\n";
-        document.getElementById("logDate").value = "";
-        document.getElementById("logDescription").value = "";
-      }
-    }
+  try {
+    const result = await saveShipment(shipmentData);
+    alert('Shipment saved successfully!');
+  } catch (error) {
+    alert(error.message || 'Error saving shipment.');
+  }
+});
 
-    function addHistoryEntry() {
-      const entry = {
-        date: document.getElementById("histDate").value,
-        time: document.getElementById("histTime").value,
-        location: document.getElementById("histLocation").value,
-        status: document.getElementById("histStatus").value,
-        updatedBy: document.getElementById("histUpdatedBy").value,
-        remarks: document.getElementById("histRemarks").value,
-      };
-      if (entry.date && entry.time && entry.location) {
-        historyData.push(entry);
-        const html = `<div class="history-entry">${entry.date} ${entry.time} - ${entry.status} at ${entry.location} by ${entry.updatedBy}<br>${entry.remarks}</div>`;
-        document.getElementById("historyList").innerHTML += html;
-
-        document.getElementById("histDate").value = "";
-        document.getElementById("histTime").value = "";
-        document.getElementById("histLocation").value = "";
-        document.getElementById("histStatus").value = "";
-        document.getElementById("histUpdatedBy").value = "";
-        document.getElementById("histRemarks").value = "";
-      }
-    }
-
-    document.getElementById("shipmentForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const shipmentData = {
-        TrackingNumber: document.getElementById("TrackingNumber").value,
-        Status: document.getElementById("Status").value,
-        ShipperName: document.getElementById("ShipperName").value,
-        ShipperPhone: document.getElementById("ShipperPhone").value,
-        ShipperAddress: document.getElementById("ShipperAddress").value,
-        ShipperEmail: document.getElementById("ShipperEmail").value,
-        ReceiverName: document.getElementById("ReceiverName").value,
-        ReceiverPhone: document.getElementById("ReceiverPhone").value,
-        ReceiverAddress: document.getElementById("ReceiverAddress").value,
-        ReceiverEmail: document.getElementById("ReceiverEmail").value,
-        EstimatedDeliveryDate: document.getElementById("EstimatedDeliveryDate").value,
-        ShippedDate: document.getElementById("ShippedDate").value,
-        FlightNumber: document.getElementById("FlightNumber").value,
-        PackageWeight: document.getElementById("PackageWeight").value,
-        Mode: document.getElementById("Mode").value,
-        Product: document.getElementById("Product").value,
-        Quantity: document.getElementById("Quantity").value,
-        Payment: document.getElementById("Payment").value,
-        TotalFreight: document.getElementById("TotalFreight").value,
-        log: logData,
-        history: historyData,
-      };
-      submitShipment(shipmentData);
-    });
-
-    function displayShipment(data) {
-      const fields = Object.keys(data);
-      fields.forEach(key => {
-        if (document.getElementById(key) && typeof data[key] !== "object") {
-          document.getElementById(key).value = data[key];
-        }
-      });
-
-      logData = Array.isArray(data.log) ? data.log : [];
-      historyData = Array.isArray(data.history) ? data.history : [];
-
-      document.getElementById("log").value = logData.map(e => `${e.date}: ${e.description}`).join("\n");
-      document.getElementById("historyList").innerHTML = historyData.map(h =>
-        `<div class="history-entry">${h.date} ${h.time} - ${h.status} at ${h.location} by ${h.updatedBy}<br>${h.remarks}</div>`
-      ).join("");
-    }
   </script>
 </body>
 </html>
