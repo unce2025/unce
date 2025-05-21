@@ -1,3 +1,4 @@
+<!-- status.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,197 +6,280 @@
   <title>Shipment Label</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
-  body {
-    margin: 0;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fff;
-    color: #002244;
-  }
+   body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #002244;
+}
 
-  .label-container {
-    max-width: 1100px;
-    margin: auto;
-  }
+.info-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('status.jpeg') center center no-repeat;
+  background-size: 400px;
+  opacity: 0.08;
+  z-index: 0;
+}
 
+.info-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 0;
+}
+
+.info-background .info-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.label-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* center tracking-box */
+  align-items: center;
+  border-bottom: 2px solid #002244;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: none; /* hide the logo */
+}
+
+.tracking-box {
+  flex: 1;
+  text-align: center;
+}
+
+.tracking-box h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #002244;
+}
+
+.barcode {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.barcode img {
+  height: auto;
+  max-height: 120px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.section-title {
+  margin-top: 30px;
+  font-size: 18px;
+  color: #002244;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.info-column {
+  flex: 1 1 45%;
+}
+
+.info-column p {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #ffc107;
+  color: #002244;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.status-indicator {
+  background-color: #f4f4f4;
+  color: #00253a;
+  padding: 18px 20px;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 600;
+  border-left: 6px solid #ffc107;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 30px 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 14px;
+  min-width: 600px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #00253a;
+  color: white;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  background: #002244;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-btn:hover {
+  background: #00172e;
+}
+
+.timeline {
+  margin: 30px 0;
+  border-left: 3px solid #00253a;
+  padding-left: 20px;
+  position: relative;
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 25px;
+  padding-left: 15px;
+}
+
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 3px solid #00253a;
+  border-radius: 50%;
+}
+
+.timeline-entry h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #00253a;
+}
+
+.timeline-entry p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #444;
+}
+
+@media (max-width: 768px) {
   .header {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    border-bottom: 3px solid #002244;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .logo {
+    display: none;
   }
 
   .tracking-box {
-    flex: 1;
-    text-align: center;
-  }
-
-  .tracking-box h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 700;
-    color: #002244;
-    letter-spacing: 1px;
-  }
-
-  .barcode {
-    margin-top: 20px;
-    text-align: center;
-  }
-
-  .barcode img {
-    max-height: 120px;
-    max-width: 100%;
-    display: inline-block;
-  }
-
-  .section-title {
-    margin-top: 35px;
-    margin-bottom: 12px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #002244;
-    border-bottom: 2px solid #002244;
-    padding-bottom: 6px;
+    flex: 1 1 100%;
   }
 
   .info-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+    flex-direction: column;
   }
 
   .info-column {
-    flex: 1 1 45%;
+    flex: 1 1 100%;
   }
-
-  .info-column p {
-    font-size: 16px;
-    line-height: 1.4;
-    margin: 6px 0;
-  }
-
-  .status-indicator {
-    background-color: #f9f9f9;
-    color: #002244;
-    padding: 20px 25px;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: 700;
-    border-left: 8px solid #ffc107;
-    border-radius: 6px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-    margin: 30px 0;
-    text-align: center;
-  }
-
-  .table-wrapper {
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 15px;
-    min-width: 600px;
-  }
-
-  th, td {
-    border: 1px solid #ccc;
-    padding: 10px 12px;
-    text-align: left;
-  }
-
-  th {
-    background-color: #002244;
-    color: #fff;
-    font-weight: 700;
-  }
-
-  /* Back Button */
-  .back-btn {
-    display: inline-block;
-    margin: 35px 0 20px 0;
-    background-color: #002244;
-    color: #fff;
-    padding: 12px 30px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-  }
-
-  .back-btn:hover {
-    background-color: #00172e;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .info-grid {
-      flex-direction: column;
-    }
-
-    .info-column {
-      flex: 1 1 100%;
-    }
-
-    .header {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
+}
 </style>
 </head>
 <body>
   <div class="label-container">
     <div class="header">
+      <div class="logo">
+        <!-- Insert logo here -->
+      </div>
       <div class="tracking-box">
         <h2>Shipment Tracking</h2>
         <div class="barcode">
-          <img id="barcodeImage" src="" alt="Barcode" />
+          <img id="barcodeImage" src="" alt="Barcode">
         </div>
       </div>
     </div>
 
-    <div class="info-grid">
-      <div class="info-column">
-        <div class="section-title">Shipper Information</div>
-        <p><strong id="shipperName"></strong></p>
-        <p id="shipperAddress"></p>
-        <p id="shipperEmail"></p>
-        <p id="shipperPhone"></p>
-      </div>
-      <div class="info-column">
-        <div class="section-title">Receiver Information</div>
-        <p><strong id="receiverName"></strong></p>
-        <p id="receiverAddress"></p>
-        <p id="receiverPhone"></p>
-        <p id="receiverEmail"></p>
-      </div>
-    </div>
-
-    <div class="section-title">Shipment Details</div>
-    <div class="info-grid">
-      <div class="info-column">
-        <p><strong>Estimated Delivery:</strong> <span id="estimatedDeliveryDate"></span></p>
-        <p><strong>Shipped Date:</strong> <span id="shippedDate"></span></p>
-        <p><strong>Pickup Time:</strong> <span id="pickupTime"></span></p>
-        <p><strong>Departure Time:</strong> <span id="departureTime"></span></p>
-        <p><strong>Mode:</strong> <span id="mode"></span></p>
-      </div>
-      <div class="info-column">
-        <p><strong>Product:</strong> <span id="product"></span></p>
-        <p><strong>Quantity:</strong> <span id="quantity"></span></p>
-        <p><strong>Payment Method:</strong> <span id="payment"></span></p>
-        <p><strong>Total Freight:</strong> <span id="totalFreight"></span></p>
+    <div class="info-background">
+      <div class="info-grid">
+        <div class="info-column">
+          <div class="section-title">Shipper Information</div>
+          <p><strong id="shipperName"></strong></p>
+          <p id="shipperAddress"></p>
+          <p id="shipperEmail"></p>
+          <p id="shipperPhone"></p>
+        </div>
+        <div class="info-column">
+          <div class="section-title">Receiver Information</div>
+          <p><strong id="receiverName"></strong></p>
+          <p id="receiverAddress"></p>
+          <p id="receiverPhone"></p>
+          <p id="receiverEmail"></p>
+        </div>
       </div>
     </div>
+<div class="section-title">Shipment Details</div>
+<div class="info-grid">
+  <div class="info-column">
+    <p><strong>Estimated Delivery:</strong> <span id="estimatedDeliveryDate"></span></p>
+    <p><strong>Shipped Date:</strong> <span id="shippedDate"></span></p>
+    <p><strong>Pickup Time:</strong> <span id="pickupTime"></span></p>
+    <p><strong>Departure Time:</strong> <span id="departureTime"></span></p>
+    <p><strong>Mode:</strong> <span id="mode"></span></p>
+  </div>
+  <div class="info-column">
+    <p><strong>Product:</strong> <span id="product"></span></p>
+    <p><strong>Quantity:</strong> <span id="quantity"></span></p>
+    <p><strong>Payment Method:</strong> <span id="payment"></span></p>
+    <p><strong>Total Freight:</strong> <span id="totalFreight"></span></p>
+  </div>
+</div>
 
-    <div class="status-indicator" id="statusIndicator">SHIPMENT STATUS: ...</div>
+  
+    <div class="status-indicator">SHIPMENT STATUS: ...</div>
 
     <div class="section-title">Shipment History</div>
     <div class="table-wrapper">
@@ -210,7 +294,7 @@
             <th>Remarks</th>
           </tr>
         </thead>
-        <tbody id="historyBody"></tbody>
+        <tbody></tbody>
       </table>
     </div>
 
@@ -222,121 +306,96 @@
             <th>Qty.</th>
             <th>Piece Type</th>
             <th>Description</th>
-            <th>Length (cm)</th>
-            <th>Width (cm)</th>
-            <th>Height (cm)</th>
+            <th>Length(cm)</th>
+            <th>Width(cm)</th>
+            <th>Height(cm)</th>
             <th>Weight (kg)</th>
           </tr>
         </thead>
-        <tbody id="packageBody"></tbody>
+        <tbody></tbody>
       </table>
     </div>
 
-    <a href="index.html" class="back-btn">← Back to Home</a>
+    <a href="index.html" class="back-btn">Back to Home</a>
   </div>
 
-<script>
-  async function fetchShipmentData(trackingNumber) {
-    try {
-      const response = await fetch(/.netlify/functions/relay?tracking=${encodeURIComponent(trackingNumber)});
-      const result = await response.json();
+  <script>
+  document.addEventListener('DOMContentLoaded', async function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const trackingNumber = urlParams.get('tracking');
 
-      if (!result.success || !result.shipment) {
-        alert('Tracking number not found.');
-        return;
-      }
-
-      const data = result.shipment;
-
-      // Parse JSON strings if necessary
-      data.log = typeof data.log === 'string' ? JSON.parse(data.log) : data.log || [];
-      data.history = typeof data.history === 'string' ? JSON.parse(data.history) : data.history || [];
-      data.packages = typeof data.packages === 'string' ? JSON.parse(data.packages) : data.packages || [];
-
-      displayShipment(data);
-
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Error fetching tracking info.');
-    }
+  if (!trackingNumber) {
+    alert('No tracking number provided.');
+    return;
   }
 
-  function displayShipment(data) {
-    // Shipper & Receiver Info
-    document.getElementById('shipperName').textContent = data.ShipperName || 'N/A';
-    document.getElementById('shipperAddress').textContent = data.ShipperAddress || '';
-    document.getElementById('shipperEmail').textContent = data.ShipperEmail || '';
-    document.getElementById('shipperPhone').textContent = data.ShipperPhone || '';
+  try {
+    const data = await fetchShipment(trackingNumber);
 
-    document.getElementById('receiverName').textContent = data.ReceiverName || 'N/A';
-    document.getElementById('receiverAddress').textContent = data.ReceiverAddress || '';
-    document.getElementById('receiverPhone').textContent = data.ReceiverPhone || '';
-    document.getElementById('receiverEmail').textContent = data.ReceiverEmail || '';
+    // Populate fields as before:
+    document.getElementById('barcodeImage').src = `https://barcode.tec-it.com/barcode.ashx?data=${trackingNumber}&code=Code128&imagetype=Gif`;
 
-    // Shipment Details
-    document.getElementById('estimatedDeliveryDate').textContent = data.EstimatedDeliveryDate
-|| 'N/A';
-document.getElementById('shippedDate').textContent = data.ShippedDate || 'N/A';
-document.getElementById('pickupTime').textContent = data.PickUpTime || 'N/A';
-document.getElementById('departureTime').textContent = data.Departure || 'N/A';
-document.getElementById('mode').textContent = data.Mode || 'N/A'; 
-document.getElementById('product').textContent = data.Product || 'N/A';
-document.getElementById('quantity').textContent = data.Quantity || 'N/A';
-document.getElementById('payment').textContent = data.Payment || 'N/A';
-document.getElementById('totalFreight').textContent = data.TotalFreight || 'N/A';
+    document.getElementById('shipperName').textContent = data.shipperName || '';
+    document.getElementById('shipperAddress').textContent = data.shipperAddress || '';
+    document.getElementById('shipperEmail').textContent = data.shipperEmail || '';
+    document.getElementById('shipperPhone').textContent = data.shipperPhone || '';
+    document.getElementById('receiverName').textContent = data.receiverName || '';
+    document.getElementById('receiverAddress').textContent = data.receiverAddress || '';
+    document.getElementById('receiverEmail').textContent = data.receiverEmail || '';
+    document.getElementById('receiverPhone').textContent = data.receiverPhone || '';
+    document.getElementById('estimatedDeliveryDate').textContent = data.estimatedDeliveryDate || '';
+    document.getElementById('shippedDate').textContent = data.shippedDate || '';
+    document.getElementById('pickupTime').textContent = data.pickUpTime || '';
+    document.getElementById('departureTime').textContent = data.departure || '';
+    document.getElementById('mode').textContent = data.mode || '';
+    document.getElementById('product').textContent = data.product || '';
+    document.getElementById('quantity').textContent = data.quantity || '';
+    document.getElementById('payment').textContent = data.payment || '';
+    document.getElementById('totalFreight').textContent = data.totalFreight || '';
 
-// Status Indicator
-document.getElementById('statusIndicator').textContent = SHIPMENT STATUS: ${data.Status || 'Unknown'};
+    // Fill Shipment History table
+    const historyTable = document.querySelector('.shipment-table tbody');
+    historyTable.innerHTML = '';
+    (data.history || []).forEach(entry => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${entry.date}</td>
+        <td>${entry.time}</td>
+        <td>${entry.location}</td>
+        <td>${entry.status}</td>
+        <td>${entry.updatedBy}</td>
+        <td>${entry.remarks}</td>
+      `;
+      historyTable.appendChild(row);
+    });
 
-// Barcode image (using your barcode data or placeholder)
-if(data.TrackingNumber) {
-  const barcodeImg = document.getElementById('barcodeImage');
-  barcodeImg.src = https://barcode.tec-it.com/barcode.ashx?data=${encodeURIComponent(data.TrackingNumber)}&code=Code128&dpi=96;
-  barcodeImg.alt = Barcode for ${data.TrackingNumber};
-}
+    // Fill Packages table
+    const packageTable = document.querySelector('.package-table tbody');
+    packageTable.innerHTML = '';
+    (data.packages || []).forEach(pkg => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${pkg.qty}</td>
+        <td>${pkg.pieceType}</td>
+        <td>${pkg.description}</td>
+        <td>${pkg.length}</td>
+        <td>${pkg.width}</td>
+        <td>${pkg.height}</td>
+        <td>${pkg.weight}</td>
+      `;
+      packageTable.appendChild(row);
+    });
 
-// Populate shipment history
-const historyBody = document.getElementById('historyBody');
-historyBody.innerHTML = '';
-(data.history || []).forEach(item => {
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td>${item.date || ''}</td>
-    <td>${item.time || ''}</td>
-    <td>${item.location || ''}</td>
-    <td>${item.status || ''}</td>
-    <td>${item.updatedBy || ''}</td>
-    <td>${item.remarks || ''}</td>
-  `;
-  historyBody.appendChild(tr);
+    // Update shipment status badge or indicator
+    document.querySelector('.status-indicator').textContent = `SHIPMENT STATUS: ${data.status || 'Unknown'}`;
+
+  } catch (error) {
+    alert(error.message || 'Error fetching shipment data.');
+  }
 });
 
-// Populate packages
-const packageBody = document.getElementById('packageBody');
-packageBody.innerHTML = '';
-(data.packages || []).forEach(pkg => {
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td>${pkg.quantity || ''}</td>
-    <td>${pkg.pieceType || ''}</td>
-    <td>${pkg.description || ''}</td>
-    <td>${pkg.length || ''}</td>
-    <td>${pkg.width || ''}</td>
-    <td>${pkg.height || ''}</td>
-    <td>${pkg.weight || ''}</td>
-  `;
-  packageBody.appendChild(tr);
-});
-}
 
-// Read tracking number from URL param ?tracking=XYZ
-const urlParams = new URLSearchParams(window.location.search);
-const trackingNumber = urlParams.get('tracking');
-if (trackingNumber) {
-fetchShipmentData(trackingNumber);
-} else {
-alert('No tracking number provided in URL.');
-}
-</script>
 
-</body> </html>
+  </script>
+</body>
+</html>
