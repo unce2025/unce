@@ -1,18 +1,17 @@
-const RELAY_URL = '/.netlify/functions/relay';
+const endpoint = '/.netlify/functions/relay';
 
-async function getTracking(trackingNumber) {
+async function fetchShipment(trackingNumber) {
+  const url = `${endpoint}?tracking=${encodeURIComponent(trackingNumber)}`;
+
   try {
-    const response = await fetch(`${RELAY_URL}?tracking=${encodeURIComponent(trackingNumber)}`);
+    const response = await fetch(url);
     const result = await response.json();
-
-    if (result.success === false || !result.shipment) {
-      alert('Tracking not found.');
-      return;
+    if (!result.success || !result.shipment) {
+      throw new Error('Shipment not found.');
     }
-
-    displayShipment(result.shipment);
+    return result.shipment;
   } catch (error) {
     console.error('Fetch error:', error);
-    alert('Failed to fetch tracking data.');
+    throw error;
   }
 }
