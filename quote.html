@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request a Quote - United Nation Cargo Express</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #00253a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .quote-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 15px;
+      max-width: 540px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .quote-container h1 {
+      margin-top: 0;
+      color: #00253a;
+      font-size: 28px;
+    }
+
+    .quote-container p {
+      color: #555;
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+
+    .quote-form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #00253a;
+      font-size: 15px;
+    }
+
+    .quote-form input,
+    .quote-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .quote-form textarea {
+      height: 90px;
+      resize: vertical;
+    }
+
+    .quote-form button {
+      width: 100%;
+      padding: 14px;
+      background-color: #00253a;
+      color: #fff;
+      font-size: 17px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .quote-form button:hover {
+      background-color: #001e2f;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 26px;
+      font-weight: bold;
+      color: #00253a;
+      cursor: pointer;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding-top: 100px;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 30px;
+      margin: auto;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-button {
+      background-color: #00253a;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 17px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-button:hover {
+      background-color: #001e2f;
+    }
+
+    @media (max-width: 600px) {
+      .quote-container {
+        padding: 25px 20px;
+      }
+
+      .quote-container h1 {
+        font-size: 22px;
+      }
+
+      .quote-container p {
+        font-size: 14px;
+      }
+
+      .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-container">
+    <span class="close-btn" onclick="window.location.href='index.html'">&times;</span>
+
+    <h1>Request a Quote</h1>
+    <p>Fill in the form below and we'll get back to you with a personalized quote as soon as possible.</p>
+
+    <form id="quoteForm" class="quote-form" onsubmit="showModal(event)">
+      <label for="name">Full Name*</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address*</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone">
+
+      <label for="origin">Origin Location*</label>
+      <input type="text" id="origin" name="origin" required>
+
+      <label for="destination">Destination Location*</label>
+      <input type="text" id="destination" name="destination" required>
+
+      <label for="cargo">Cargo Description*</label>
+      <textarea id="cargo" name="cargo" required></textarea>
+
+      <label for="weight">Weight / Volume</label>
+      <input type="text" id="weight" name="weight">
+
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
+
+  <!-- Modal for confirmation -->
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <h2>Your request has been submitted successfully.</h2>
+      <p>We will contact you shortly with a personalized quote.</p>
+      <button class="modal-button" onclick="closeModal()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    function showModal(event) {
+      event.preventDefault();
+      document.getElementById("confirmationModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("confirmationModal").style.display = "none";
+      document.getElementById("quoteForm").reset();
+    }
+  </script>
+</body>
+</html>

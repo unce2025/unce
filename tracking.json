@@ -1,0 +1,35 @@
+{
+  "UN123CE456": {
+    "shipper": {
+      "name": "Don Charles",
+      "country": "United Kingdom",
+      "email": "dondoncharles404@gmail.com",
+      "phone": "09934604219"
+    },
+    "receiver": {
+      "name": "Elizabeth D. Aquino",
+      "address": "PUROK 8 SALVACION, PANABO CITY",
+      "phone": "09934604219",
+      "email": "elizabethaquino0408199@gmail.com"
+    },
+    "shipment": {
+      "mode": "Air-Freight",
+      "product": "Electronics",
+      "quantity": "2",
+      "payment": "PayPal",
+      "totalFreight": "$320.00",
+      "expectedDelivery": "2025-05-12"
+    },
+    "status": "ON HOLD – Customs clearance is pending.",
+    "history": [
+      {
+        "date": "2025-04-10",
+        "time": "09:00",
+        "location": "Manila Airport",
+        "status": "On Hold",
+        "updatedBy": "UNCE",
+        "remarks": "Pending payment"
+      }
+    ]
+  }
+}

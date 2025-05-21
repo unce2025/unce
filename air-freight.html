@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Air Freight | United Nation Cargo Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #00253a;
+      line-height: 1.6;
+    }
+
+   
+    header h1 {
+      font-size: 32px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #00253a, #00517a);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeSlideIn 0.8s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      animation: fadeSlideIn 1s ease-out;
+    }
+
+    .content h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #00253a;
+    }
+
+    .content p {
+      font-size: 17px;
+      color: #444;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .feature {
+      flex: 1 1 45%;
+      background-color: #e9f3f7;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .feature h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      color: #003d5c;
+    }
+
+    .feature p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .quote-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #00517a;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 16px;
+      text-decoration: none;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 999;
+    }
+
+    .quote-button:hover {
+      background-color: #003d5c;
+      transform: translateY(-4px);
+    }
+
+    .back-section {
+      text-align: center;
+      margin: 50px 0 80px;
+    }
+
+    .back-section a {
+      background-color: #00253a;
+      color: white;
+      padding: 12px 26px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-section a:hover {
+      background-color: #003d5c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background: #f0f0f0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+      }
+
+      .feature {
+        flex: 1 1 100%;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+
+  <section class="hero">
+    <h1>Air Freight Services</h1>
+    <p>Swift. Secure. Global. Let your cargo fly with confidence.</p>
+  </section>
+
+  <div class="content">
+    <h2>Why Choose Our Air Freight?</h2>
+    <p>
+      With access to a wide global network and years of experience, our Air Freight service ensures the fastest delivery for time-sensitive shipments. We provide door-to-door service, customs clearance, and real-time tracking to make your logistics seamless and stress-free.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <h3>Speed & Efficiency</h3>
+        <p>We prioritize time-sensitive shipments with fast air transport, ensuring timely arrivals worldwide.</p>
+      </div>
+      <div class="feature">
+        <h3>Global Reach</h3>
+        <p>Our international network connects major destinations across continents, expanding your business reach.</p>
+      </div>
+      <div class="feature">
+        <h3>Real-Time Tracking</h3>
+        <p>Monitor your cargo 24/7 with our integrated tracking system, giving you full visibility at every stage.</p>
+      </div>
+      <div class="feature">
+        <h3>Secure Handling</h3>
+        <p>From loading to final delivery, we ensure your cargo is handled with care and protected from damage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-section">
+    <a href="index.html#services">Back to Services</a>
+  </div>
+
+  <a href="quote.html" class="quote-button">Get a Free Quote</a>
+
+  <footer>
+    <p>&copy; 2025 United Nation Cargo Express. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

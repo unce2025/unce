@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | United Nation Cargo Express</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #00253a;
+      --light: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    .hero {
+      height: 250px;
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--light);
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    section {
+      background-color: var(--light);
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .image-text {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .image-text img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .image-text p {
+      flex: 1;
+      font-size: 1.1rem;
+    }
+
+    .service-list, .features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-list li {
+      margin-bottom: 10px;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      transition: background-color 0.3s, transform 0.2s;
+      border: 1px solid var(--primary);
+    }
+
+    .service-list li a {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      color: var(--primary);
+      text-decoration: none;
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .service-list li:hover {
+      background-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .service-list li:hover a {
+      color: var(--light);
+    }
+
+    .service-list li i {
+      margin-right: 10px;
+    }
+
+    .features li {
+      background: var(--light);
+      margin-bottom: 10px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      border: 1px solid var(--primary);
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: var(--primary);
+      color: var(--light);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #001d2e;
+    }
+
+    blockquote {
+      border-left: 4px solid var(--primary);
+      padding-left: 15px;
+      font-style: italic;
+      margin: 10px 0;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--primary);
+      color: var(--light);
+    }
+
+    /* Mobile-first styles */
+    @media (max-width: 768px) {
+      .image-text {
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .service-list li,
+      .features li {
+        font-size: 1rem;
+      }
+
+      .back-button {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      blockquote {
+        font-size: 1rem;
+      }
+    }
+
+    /* Tablet and up */
+    @media (min-width: 769px) {
+      .image-text {
+        flex-direction: row;
+      }
+
+      .service-list li,
+      .features li {
+        font-size: 1.1rem;
+      }
+
+      .back-button {
+        font-size: 16px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div>
+      <h1>About United Nation Cargo Express</h1>
+      <p>Your Trusted Global Logistics Partner</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Who We Are</h2>
+      <div class="image-text">
+        <img src="company1.jpeg" alt="Logistics team" />
+        <p>United Nation Cargo Express (UNCE) is a leading global logistics provider. With a network spanning multiple countries, we are committed to delivering shipments with efficiency, precision, and care.</p>
+      </div>
+    </section>
+
+  <section>
+  <h2>Our Mission & Vision</h2>
+  <p><strong>Our Mission:</strong> To simplify global trade by providing fast, reliable, and secure cargo services tailored to the needs of businesses and individuals worldwide.</p>
+  <p><strong>Our Vision:</strong> To become the most trusted and innovative name in international freight and logistics, empowering global commerce through excellence in service and technology.</p>
+</section>
+
+    <section>
+      <h2>What We Do</h2>
+      <ul class="service-list">
+        <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
+        <li><a href="ocean-freight.html"><i class="fas fa-ship"></i> Ocean Freight</a></li>
+        <li><a href="land-freight.html"><i class="fas fa-truck"></i> Land Freight</a></li>
+        <li><a href="warehousing.html"><i class="fas fa-box-open"></i> Packaging & Warehousing</a></li>
+        <li><a href="blog4.html"><i class="fas fa-file-alt"></i> Customs Clearance</a></li>
+      
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why Choose Us?</h2>
+      <ul class="features">
+        <li>Real-Time Shipment Tracking</li>
+        <li>Global Network Coverage</li>
+        <li>24/7 Customer Support</li>
+        <li>Safe & Reliable Handling</li>
+        <li>Competitive Pricing</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Our Core Values</h2>
+      <ul class="features">
+        <li>Integrity and Transparency</li>
+        <li>Customer Commitment</li>
+        <li>Innovation in Logistics</li>
+        <li>Teamwork and Respect</li>
+        <li>Excellence in Execution</li>
+      </ul>
+    </section>
+
+    <section>
+    <section>
+  <h2>Our Leadership Team</h2>
+  <img src="leader.jpeg" alt="Leadership Team of United Nation Cargo Express" style="max-width: 100%; border-radius: 10px; margin-bottom: 20px;">
+  <p>
+    At United Nation Cargo Express, our leadership team brings decades of combined experience in international logistics, supply chain management, and customer service. Their strategic vision and hands-on expertise drive our mission to deliver reliable, efficient, and innovative cargo solutions to clients worldwide.
+  </p>
+</section>
+     
+    <section>
+      <h2>Our Journey</h2>
+      <ul class="features">
+        <li><strong>2015:</strong> Founded in Los Angeles, CA</li>
+        <li><strong>2017:</strong> Expanded to international shipping</li>
+        <li><strong>2020:</strong> Opened 10+ warehouse hubs globally</li>
+        <li><strong>2023:</strong> Launched express document delivery</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What Our Clients Say</h2>
+      <blockquote>"Reliable, on time, and excellent customer service. UNCE is our go-to logistics partner!" – GlobalTech Inc.</blockquote>
+      <blockquote>"I’ve never experienced smoother cargo clearance and tracking. Truly professional team." – Jane D., Import Manager</blockquote>
+    </section>
+
+    <section>
+      <h2>Contact Information</h2>
+      <p>
+        <strong>Address:</strong> 5758 W Century Blvd, Los Angeles, CA 90045<br/>
+        <strong>Phone:</strong> +1 (800) 123-4567<br/>
+        <strong>Email:</strong> <a href="mailto:cargoexpress.un@gmail.com">cargoexpress.un@gmail.com</a>
+      </p>
+    </section>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 United Nation Cargo Express. All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - United Nation Cargo Express</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Thank You Container */
+    .thankyou-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    /* Close Button */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      color: #333;
+    }
+
+    .close-btn:hover {
+      color: #00253a; /* Matches your dark blue */
+    }
+
+    /* Header */
+    h1 {
+      font-size: 2.5rem;
+      color: #00253a; /* Dark Blue */
+      margin-bottom: 15px;
+    }
+
+    /* Paragraph */
+    p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    /* Button */
+    .btn {
+      background-color: #00253a; /* Dark Blue */
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #1c3c56; /* Slightly lighter blue on hover */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .thankyou-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .thankyou-container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+      }
+
+      .btn {
+        padding: 7px 14px;
+        font-size: 0.85rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="thankyou-container">
+    <!-- Close Button Redirects to Home -->
+    <button class="close-btn" onclick="window.location.href='index.html';">×</button>
+    <h1>Thank You!</h1>
+    <p>Your quote request has been successfully submitted.</p>
+    <p>We’ll review your details and get back to you shortly.</p>
+    <a href="quote.html" class="btn">Submit Another Request</a>
+  </div>
+</body>
+</html>

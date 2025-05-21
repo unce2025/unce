@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>United Nation Cargo Express</title>
+  <link rel="stylesheet" href="mainpage.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+  <!-- Menu overlay -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Loading Spinner -->
+  <div id="pageLoading" class="page-loading">
+    <div class="spinner"></div>
+  </div>
+
+<header class="header-top">
+  <div class="logo">
+    <a href="company.html">
+      <img src="status.jpeg" alt="Logo">
+    </a>
+  </div>
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+</header>
+
+<nav id="menu">
+  <a href="index.html">Home</a>
+  <a href="quote.html">Quote</a>
+  <a href="company.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html">Login</a>
+</nav>
+</header>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('menu');
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent bubbling
+    menu.classList.toggle('active');
+  });
+
+  // Optional: Close menu if clicking outside
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove('active');
+    }
+  });
+</script>
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>
+         <span class="blue">Your Cargo, Our Commitment</span><br />
+<span class="sub-text">Reliable Air & Ocean Freight Solutions</span>
+        </h1>
+        <p>Trusted by businesses worldwide to deliver cargo securely, on time, and across the globe.</p>
+      </div>
+
+      <form id="trackingForm" novalidate>
+        <input type="text" id="trackingNumber" placeholder="UN123CE456" />
+        <button type="submit"><i class="fa fa-search"></i> Track your shipment</button>
+      </form>
+    </section>
+  </main>
+
+<section id="our-team" class="team-section">
+  <div class="container">
+    <h2 class="section-title">Meet the Team Behind Every Delivery</h2>
+    <p class="section-intro">
+      At United Nation Cargo Express, we’re more than just a logistics company — we’re a team of real people who take pride in moving your shipments safely and on time.
+    </p>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="team1.jpeg" alt="Warehouse and dispatch crew" class="zoom-img" />
+        <p class="team-caption">
+          Our warehouse and dispatch crew works behind the scenes to ensure every package is tracked, scanned, and ready to move.
+        </p>
+      </div>
+    
+      <div class="team-member">
+        <img src="team2.jpeg" alt="United team standing" class="zoom-img" />
+        <p class="team-caption">
+          United as one team — from drivers to planners, every person you see here is dedicated to delivering excellence every day.
+        </p>
+      </div>
+  <div class="team-member">
+        <img src="support.jpeg" alt="Customer support team in uniforms" class="zoom-img" />
+        <p class="team-caption">
+          Whether you need updates or special handling, our support staff is here to help — always just a call or message away.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="faq-section">
+    <h1 class="section-title">FAQ</h1>      
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What payment methods do you accept? <span class="arrow">▼</span></button>
+        <div class="faq-answer">
+          We accept major cards, PayPal, bank transfers, and mobile money platforms.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What happens if my cargo is lost or damaged? <span class="arrow">▼</span></button>
+        <div class="faq-answer">
+          Please contact our support team immediately to file a claim.
+        </div>
+      </div>
+
+
+<div class="faq-item">
+  <button class="faq-question">Do you offer international shipping? <span class="arrow">▼</span></button>
+  <div class="faq-answer">
+    Yes, we offer reliable international cargo services to over 100 countries.
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">How long does delivery usually take? <span class="arrow">▼</span></button>
+  <div class="faq-answer">
+    Delivery time depends on the destination and shipping method, typically between 3-14 business days.
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Can I change my delivery address after booking? <span class="arrow">▼</span></button>
+  <div class="faq-answer">
+    Yes, contact our customer service as soon as possible to update your delivery information.
+  </div>
+</div>
+
+<div class="faq-item">
+  <button class="faq-question">Do you provide packaging services? <span class="arrow">▼</span></button>
+  <div class="faq-answer">
+    Yes, we offer professional packaging services to ensure your items are safe and secure during transit.
+  </div>
+</div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-container">
+      <a href="air-freight.html" class="service-card fade-zoom">
+        <h3>Air Freight</h3>
+        <p>Fast and reliable air shipping solutions to get your package across the globe.</p>
+      </a>
+      <a href="ocean-freight.html" class="service-card fade-zoom">
+        <h3>Ocean Freight</h3>
+        <p>Affordable and efficient sea transport for bulk and international shipping.</p>
+      </a>
+
+   <a href="land-freight.html" class="service-card fade-zoom">
+      <h3>Land Freight</h3>
+      <p>Efficient road transport for domestic and cross-border deliveries with tracking support.</p>
+    </a>
+  
+
+      <a href="customs-clearance.html" class="service-card fade-zoom">
+        <h3>Customs Clearance</h3>
+        <p>Professional handling of all customs paperwork and legal processes.</p>
+      </a>
+      <a href="warehousing.html" class="service-card fade-zoom">
+        <h3>Warehousing</h3>
+        <p>Secure and organized storage solutions for all your logistics needs.</p>
+      </a>
+    </div>
+  </section>
+
+<!-- Floating Ask Meta AI Style Button -->
+<div class="meta-chat-toggle" onclick="toggleChatMeta()">
+  <img src="chat-icon.png" class="meta-icon" alt="Chat" />
+  <span class="meta-label">Get Assistance</span>
+</div>
+
+<!-- Chat Widget -->
+<div id="chat-widget">
+  <div class="chat-header">
+    <div class="chat-title">
+      <img src="un.jpeg" class="avatar" alt="Bot" />
+      <div>
+        <div class="name"></div>
+        <div class="status">● online</div>
+      </div>
+    </div>
+    <div class="close" onclick="closeChat()">×</div>
+  </div>
+
+  <div class="chat-body" id="chat-body">
+    <div class="bubble bot">Hello! Welcome to United Nation Cargo Express.</div>
+  </div>
+
+  <div class="option-buttons" id="options">
+    <button onclick="selectOption('track')">Track My Shipment</button>
+    <button onclick="selectOption('quote')">Get a Quote</button>
+    <button onclick="selectOption('services')">Learn About Our Services</button>
+    <button onclick="selectOption('live')">Speak to a Live Agent</button>
+  </div>
+
+  <div class="chat-input" id="chat-input">
+    <input type="text" id="user-message" placeholder="Type your message..." />
+    <button onclick="sendMessage()">➤</button>
+  </div>
+
+  <div class="powered">Powered by United Nation Cargo Express</div>
+</div>
+
+<style>
+  .meta-chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00253a;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: width 0.3s ease, padding 0.3s ease;
+    z-index: 1000;
+  }
+
+  .meta-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .meta-label {
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+  }
+
+  .meta-chat-toggle.collapsed {
+    padding: 12px;
+    border-radius: 50%;
+    width: 50px;
+    justify-content: center;
+  }
+
+  .meta-chat-toggle.collapsed .meta-label {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  #chat-widget {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+    z-index: 1001;
+    border: 1px solid #00253a;
+  }
+
+  .chat-header {
+    background-color: #00253a;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chat-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chat-title .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .chat-body {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bubble {
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin: 6px 0;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+
+  .bot {
+    background-color: #e5e5e5;
+    align-self: flex-start;
+  }
+
+  .user {
+    background-color: #00253a;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+
+  .option-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+    align-items: center;
+  }
+
+  .option-buttons button {
+    width: 80%;
+    background-color: white;
+    color: #00253a;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .option-buttons button:hover {
+    background-color: #004aad;
+    color: white;
+  }
+
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    background: #ffffff;
+  }
+
+  .chat-input input {
+    flex: 1;
+    border: none;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    background: #f2f2f2;
+    outline: none;
+  }
+
+  .chat-input button {
+    background: #00253a;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-left: 8px;
+    font-size: 16px;
+  }
+
+  .close {
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .powered {
+    font-size: 12px;
+    text-align: center;
+    padding: 5px;
+    background: #f1f1f1;
+    color: #00253a;
+  }
+
+  @media (min-width: 768px) {
+    #chat-widget {
+      bottom: 100px;
+      right: 30px;
+    }
+
+    .meta-chat-toggle {
+      bottom: 40px;
+      right: 30px;
+    }
+  }
+</style>
+
+<script>
+  let chatOpen = false;
+  let lastIntent = null;
+
+  function toggleChatMeta() {
+    const chatToggle = document.querySelector('.meta-chat-toggle');
+    const chatWidget = document.getElementById('chat-widget');
+
+    chatOpen = !chatOpen;
+    chatWidget.style.display = chatOpen ? 'flex' : 'none';
+
+    if (chatOpen) {
+      chatToggle.classList.add('collapsed');
+    } else {
+      chatToggle.classList.remove('collapsed');
+    }
+  }
+
+  function closeChat() {
+    document.getElementById('chat-widget').style.display = 'none';
+    document.querySelector('.meta-chat-toggle').classList.remove('collapsed');
+    chatOpen = false;
+  }
+
+  function simulateTyping(callback, delay = 800) {
+    const chatBody = document.getElementById('chat-body');
+    const typing = document.createElement('div');
+    typing.className = 'bubble bot';
+    typing.innerText = 'Typing...';
+    chatBody.appendChild(typing);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    setTimeout(() => {
+      chatBody.removeChild(typing);
+      callback();
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, delay);
+  }
+
+  function appendBotReply(text) {
+    const botBubble = document.createElement('div');
+    botBubble.className = 'bubble bot';
+    botBubble.innerText = text;
+
+    const time = document.createElement('div');
+    time.style.fontSize = '10px';
+    time.style.color = '#999';
+    time.style.marginTop = '2px';
+    time.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    botBubble.appendChild(time);
+    document.getElementById('chat-body').appendChild(botBubble);
+  }
+
+  function selectOption(type) {
+    const chatBody = document.getElementById('chat-body');
+    const options = document.getElementById('options');
+    options.style.display = 'none';
+    options.dataset.hidden = 'true';
+
+    const userBubble = document.createElement('div');
+    userBubble.className = 'bubble user';
+    let botReply = '';
+    lastIntent = type;
+
+    switch(type) {
+      case 'track':
+        userBubble.innerText = 'Track My Shipment';
+        botReply = "Of course. Can you please share your tracking number so I can look it up for you?";
+        break;
+      case 'quote':
+        userBubble.innerText = 'Get a Quote';
+        botReply = "Sure! Please provide the origin, destination, and approximate weight of your shipment.";
+        break;
+      case 'services':
+        userBubble.innerText = 'Learn About Our Services';
+        botReply = "We offer air and ocean freight, customs clearance, warehousing, and last-mile delivery. What kind of service are you interested in?";
+        break;
+      case 'live':
+        userBubble.innerText = 'Speak to a Live Agent';
+        botReply = "A live agent is currently unavailable. Please leave your name and message and we will get back to you shortly.";
+        break;
+    }
+
+    const time = document.createElement('div');
+    time.style.fontSize = '10px';
+    time.style.color = '#999';
+    time.style.marginTop = '2px';
+    time.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    userBubble.appendChild(time);
+
+    chatBody.appendChild(userBubble);
+    simulateTyping(() => appendBotReply(botReply));
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('user-message');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const chatBody = document.getElementById('chat-body');
+    const options = document.getElementById('options');
+    options.style.display = 'none';
+    options.dataset.hidden = 'true';
+
+    const userBubble = document.createElement('div');
+    userBubble.className = 'bubble user';
+    userBubble.innerText = msg;
+    chatBody.appendChild(userBubble);
+
+    const time = document.createElement('div');
+    time.style.fontSize = '10px';
+    time.style.color = '#999';
+    time.style.marginTop = '2px';
+    time.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    userBubble.appendChild(time);
+
+    input.value = '';
+
+    if (!lastIntent) {
+      lastIntent = 'general';
+    }
+
+    simulateTyping(() => {
+      const lowerMsg = msg.toLowerCase();
+      const upperMsg = msg.toUpperCase();
+      let response = '';
+
+      if (lastIntent === 'track') {
+        if (upperMsg === 'UN123CE456') {
+          response = "Your shipment with tracking number UN123CE456 is currently On Hold due to customs clearance procedures.";
+        } else if (/UN\d{3}[A-Z]{2}\d{3}/.test(upperMsg)) {
+          response = "Sorry, the tracking number seems incorrect. Please double-check and try again.";
+        } else {
+          response = "Please provide a valid tracking number.";
+        }
+      } else if (lowerMsg.includes('agent') || lowerMsg.includes('support')) {
+        lastIntent = 'live';
+        response = "A live agent is currently unavailable. Please leave your name and message.";
+      } else if (lastIntent === 'quote') {
+        response = "Thanks! We'll review your quote request and contact you soon.";
+      } else if (lastIntent === 'services') {
+        if (lowerMsg.includes('air')) {
+          response = "Air freight is ideal for fast deliveries. Do you already have origin and destination details?";
+        } else if (lowerMsg.includes('ocean')) {
+          response = "Ocean freight is suited for bulk shipments. What's the pickup and drop-off location?";
+        } else {
+          response = "Thanks! Let us know what service you're interested in.";
+        }
+      } else {
+        response = "Thank you for your message. Please select an option or let us know how we can help.";
+      }
+
+      appendBotReply(response);
+    });
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') closeChat();
+  });
+</script>
+
+
+
+
+  <div class="split-container">
+
+    <!-- Left Panel: Calculator Form -->
+    <div class="left-panel">
+      <h1>Shipping Cost Calculator</h1>
+      <form id="shippingForm">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" placeholder="Enter weight" required min="1">
+
+        <label for="distance">Distance (km):</label>
+        <input type="number" id="distance" name="distance" placeholder="Enter distance" required min="1">
+
+        <label for="shippingType">Shipping Type:</label>
+        <select id="shippingType" name="shippingType" required>
+          <option value="">Select Shipping Type</option>
+          <option value="air">Air Freight</option>
+          <option value="ocean">Ocean Freight</option>
+          <option value="land">Land Transport</option>
+        </select>
+
+        <button type="submit">Calculate</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+
+    <!-- Right Panel: Information -->
+    <div class="right-panel">
+      <div>
+        <h2>Reliable Logistics Solutions</h2>
+        <p>United Nation Cargo Express provides fast, secure, and cost-effective shipping solutions for all your logistics needs.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById("shippingForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let weight = parseFloat(document.getElementById("weight").value);
+      let distance = parseFloat(document.getElementById("distance").value);
+      let shippingType = document.getElementById("shippingType").value;
+      let resultDiv = document.getElementById("result");
+
+      // Error Handling
+      if (isNaN(weight) || weight <= 0 || isNaN(distance) || distance <= 0 || !shippingType) {
+        resultDiv.innerHTML = '<p class="error">Please enter valid values for all fields.</p>';
+        return;
+      }
+
+      // Shipping Cost Rates (per kg per km)
+      let ratePerKgPerKm = {
+        air: 0.08,     // Example: $0.08 per kg per km
+        ocean: 0.05,   // Example: $0.05 per kg per km
+        land: 0.03     // Example: $0.03 per kg per km
+      };
+
+      // Calculate Cost
+      let cost = weight * distance * ratePerKgPerKm[shippingType];
+
+      // Display Result
+      resultDiv.innerHTML = `<p><strong>Estimated Shipping Cost:</strong> $${cost.toFixed(2)}</p>`;
+    });
+  </script>
+
+
+
+
+
+
+  <section class="testimonial-section">
+    <h2 class="section-title">What Our Clients Say</h2>
+    
+    <div class="testimonial-container">
+
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "As an online seller, timely delivery is everything. United Nation Cargo Express has never let me down. Packages arrive quickly, and I always receive updates along the way. Their customer service is excellent!"
+        </p>
+        <p class="testimonial-author">– Rachel Gomez, Small Business Owner</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "We regularly ship commercial cargo overseas and have tried many logistics companies in the past. UNCE stands out with their professionalism, transparency, and accurate tracking. I highly recommend their freight solutions."
+        </p>
+        <p class="testimonial-author">– Daniel Chen, Procurement Officer, BlueLink Exports</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Moving sensitive documents for legal clients requires trust. UNCE has proven time and again that they handle every delivery with care. Their document delivery service is fast, reliable, and secure."
+        </p>
+        <p class="testimonial-author">– Atty. Maria Valdez, Legal Consultant</p>
+      </div>
+
+    </div>
+  </section>
+
+
+
+    <section id="blog-section">
+  <div class="container">
+    <h2 class="section-title">Latest Blog Posts</h2>
+    <p class="section-intro">Stay updated with the latest news, tips, and insights from the logistics and transportation world.</p>
+ 
+    <div class="blog-posts">
+      <!-- Blog Post 1 -->
+      <div class="blog-post">
+        <img src="blog1.jpeg" alt="Efficient Shipping Solutions" class="blog-img" />
+        <div class="post-content">
+          <h2><a href="blog1.html">Efficient Shipping Solutions for Global Businesses</a></h2>
+          <p class="post-excerpt">
+            Explore strategies and tools that enable businesses to streamline their shipping processes, reduce costs, and improve delivery efficiency globally.
+          </p>
+         <a href="blog1.html" class="read-more">Read more</a>
+        </div>
+      </div>
+
+      <!-- Blog Post 2 -->
+      <div class="blog-post">
+        <img src="blog2.jpeg" alt="International Shipping Tips" class="blog-img" />
+        <div class="post-content">
+          <h2><a href="blog2.html">International Shipping Tips</a></h2>
+          <p class="post-excerpt">
+            Learn essential tips for successful international shipping, from choosing the right carrier to managing customs and taxes effectively.
+          </p>
+          <a href="blog2.html" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Blog Post 3 -->
+      <div class="blog-post">
+        <img src="blog3.jpeg" alt="Choosing the Right Freight Option" class="blog-img" />
+        <div class="post-content">
+          <h2><a href="blog3.html">Choosing the Right Freight Option</a></h2>
+          <p class="post-excerpt">
+            Not all freight options are created equal. This post explores how to select the most cost-effective and reliable freight method for your needs.
+          </p>
+          <a href="blog3.html" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Blog Post 4 -->
+      <div class="blog-post">
+        <img src="custom.jpeg" alt="Understanding Customs Clearance" class="blog-img" />
+        <div class="post-content">
+          <h2><a href="blog4.html">Understanding Customs Clearance</a></h2>
+          <p class="post-excerpt">
+            Navigate the complexities of customs clearance with this comprehensive guide, ensuring your shipments pass smoothly through international borders.
+          </p>
+          <a href="blog4.html" class="read-more">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+
+
+
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+
+      <img src="status.jpeg" alt="UNCE Logo" class="footer-logo" /> 
+      <p>Reliable Logistics Worldwide</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quote.html">Quote</a></li>
+        <li><a href="about.html">About</a></li>
+       
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><i class="fas fa-phone"></i> +1 (800) 123-4567</p>
+      <p><i class="fas fa-envelope"></i> cargoexpress.un@gmail.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> United Nation Cargo Express 5758 W Century Blvd, Los Angeles, CA 90045</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 United Nation Cargo Express. All Rights Reserved.</p>
+  </div>
+</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if (entry.target.classList.contains('fade-zoom') || entry.target.classList.contains('service-card')) {
+              entry.target.classList.add('zoom-in');
+            }
+          } else {
+            entry.target.classList.remove('visible');
+            entry.target.classList.remove('zoom-in');
+          }
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll(
+        '.hero-section, .section-title, .team-member, .faq-item, .service-card'
+      ).forEach(el => observer.observe(el));
+
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+          faqItems.forEach(i => { if (i !== item) i.classList.remove('active'); });
+          item.classList.toggle('active');
+        });
+      });
+
+      
+
+      input.addEventListener('input', () => {
+        input.classList.remove('error');
+      });
+
+      const menuToggle = document.getElementById('menuToggle');
+      const menu = document.getElementById('menu');
+      const overlay = document.getElementById('menuOverlay');
+
+      menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('visible');
+        overlay.classList.toggle('show');
+        document.body.classList.toggle('no-scroll');
+      });
+
+      overlay.addEventListener('click', () => {
+        menu.classList.remove('visible');
+        overlay.classList.remove('show');
+        document.body.classList.remove('no-scroll');
+      });
+
+      document.querySelectorAll('#menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('visible');
+          overlay.classList.remove('show');
+          document.body.classList.remove('no-scroll');
+        });
+      });
+    });
+ 
+
+// When saving data (POST request)
+fetch('/.netlify/functions/addTracking', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+});
+ </script>
+<script>
+  const form = document.getElementById('trackingForm');
+  const input = document.getElementById('trackingNumber');
+  const pageLoading = document.getElementById('pageLoading');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const value = input.value.trim();
+
+    input.classList.remove('error', 'shake');
+
+    if (value === '') {
+      input.classList.add('error', 'shake');
+      input.placeholder = 'Fill out this field';
+      return;
+    }
+
+    // Optional: Remove this if you want to allow dynamic tracking numbers
+    if (value !== 'UN123CE456') {
+      alert('The tracking number entered does not match our records. Kindly verify the number and try again.');
+      input.classList.add('error');
+      input.value = '';
+      return;
+    }
+
+    pageLoading.style.display = 'flex';
+
+    // FIXED: Add tracking number to the redirect URL
+    setTimeout(() => {
+      window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
+    }, 1500);
+  });
+</script>
+
+
+</html>

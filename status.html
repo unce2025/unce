@@ -1,0 +1,407 @@
+
+<!-- status.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shipment Label</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+   body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #002244;
+}
+
+.info-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('status.jpeg') center center no-repeat;
+  background-size: 400px;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.info-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 0;
+}
+
+.info-background .info-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.label-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* center tracking-box */
+  align-items: center;
+  border-bottom: 2px solid #002244;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: none; /* hide the logo */
+}
+
+.tracking-box {
+  flex: 1;
+  text-align: center;
+}
+
+.tracking-box h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #002244;
+}
+
+.barcode {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.barcode img {
+  height: auto;
+  max-height: 120px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.section-title {
+  margin-top: 30px;
+  font-size: 18px;
+  color: #002244;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.info-column {
+  flex: 1 1 45%;
+}
+
+.info-column p {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #ffc107;
+  color: #002244;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.status-indicator {
+  background-color: #f4f4f4;
+  color: #00253a;
+  padding: 18px 20px;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 600;
+  border-left: 6px solid #ffc107;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 30px 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 14px;
+  min-width: 600px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #00253a;
+  color: white;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  background: #002244;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-btn:hover {
+  background: #00172e;
+}
+
+.timeline {
+  margin: 30px 0;
+  border-left: 3px solid #00253a;
+  padding-left: 20px;
+  position: relative;
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 25px;
+  padding-left: 15px;
+}
+
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 3px solid #00253a;
+  border-radius: 50%;
+}
+
+.timeline-entry h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #00253a;
+}
+
+.timeline-entry p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .tracking-box {
+    flex: 1 1 100%;
+  }
+
+  .info-grid {
+    flex-direction: column;
+  }
+
+  .info-column {
+    flex: 1 1 100%;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="label-container">
+    <div class="header">
+      <div class="logo">
+        <!-- Insert logo here -->
+      </div>
+      <div class="tracking-box">
+        <h2>Shipment Tracking</h2>
+        <div class="barcode">
+          <img id="barcodeImage" src="" alt="Barcode">
+        </div>
+      </div>
+    </div>
+
+    <div class="info-background">
+      <div class="info-grid">
+        <div class="info-column">
+          <div class="section-title">Shipper Information</div>
+          <p><strong id="shipperName"></strong></p>
+          <p id="shipperAddress"></p>
+          <p id="shipperEmail"></p>
+          <p id="shipperPhone"></p>
+        </div>
+        <div class="info-column">
+          <div class="section-title">Receiver Information</div>
+          <p><strong id="receiverName"></strong></p>
+          <p id="receiverAddress"></p>
+          <p id="receiverPhone"></p>
+          <p id="receiverEmail"></p>
+        </div>
+      </div>
+    </div>
+<div class="section-title">Shipment Details</div>
+<div class="info-grid">
+  <div class="info-column">
+    <p><strong>Estimated Delivery:</strong> <span id="estimatedDeliveryDate"></span></p>
+    <p><strong>Shipped Date:</strong> <span id="shippedDate"></span></p>
+    <p><strong>Pickup Time:</strong> <span id="pickupTime"></span></p>
+    <p><strong>Departure Time:</strong> <span id="departureTime"></span></p>
+    <p><strong>Mode:</strong> <span id="mode"></span></p>
+  </div>
+  <div class="info-column">
+    <p><strong>Product:</strong> <span id="product"></span></p>
+    <p><strong>Quantity:</strong> <span id="quantity"></span></p>
+    <p><strong>Payment Method:</strong> <span id="payment"></span></p>
+    <p><strong>Total Freight:</strong> <span id="totalFreight"></span></p>
+  </div>
+</div>
+
+  
+    <div class="status-indicator">SHIPMENT STATUS: ...</div>
+
+    <div class="section-title">Shipment History</div>
+    <div class="table-wrapper">
+      <table class="shipment-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Updated By</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="section-title">Packages</div>
+    <div class="table-wrapper">
+      <table class="package-table">
+        <thead>
+          <tr>
+            <th>Qty.</th>
+            <th>Piece Type</th>
+            <th>Description</th>
+            <th>Length(cm)</th>
+            <th>Width(cm)</th>
+            <th>Height(cm)</th>
+            <th>Weight (kg)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <a href="index.html" class="back-btn">Back to Home</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const trackingNumber = urlParams.get('tracking');
+
+      if (!trackingNumber) {
+        alert('No tracking number provided.');
+        return;
+      }
+
+      const fetchShipmentData = async () => {
+        try {
+          const response = await fetch(`https://script.google.com/macros/s/AKfycbw-3HuIdKt0STynAuZZxOC51kAVhd6hBp7kd3UChOX5dN6S2hUqBaRbJW81aOr63nY/exec?tracking=${encodeURIComponent(trackingNumber)}`);
+          const result = await response.json();
+
+          if (!result.success || !result.shipment) {
+            alert('Tracking number not found.');
+            return;
+          }
+
+          const data = result.shipment;
+
+          document.getElementById('barcodeImage').src = `https://barcode.tec-it.com/barcode.ashx?data=${trackingNumber}&code=Code128&imagetype=Gif`;
+
+          document.getElementById('shipperName').textContent = data.shipperName || '';
+          document.getElementById('shipperAddress').textContent = data.shipperAddress || '';
+          document.getElementById('shipperEmail').textContent = data.shipperEmail || '';
+          document.getElementById('shipperPhone').textContent = data.shipperPhone || '';
+          document.getElementById('receiverName').textContent = data.receiverName || '';
+          document.getElementById('receiverAddress').textContent = data.receiverAddress || '';
+          document.getElementById('receiverEmail').textContent = data.receiverEmail || '';
+          document.getElementById('receiverPhone').textContent = data.receiverPhone || '';
+          document.getElementById('estimatedDeliveryDate').textContent = data.estimatedDeliveryDate || '';
+document.getElementById('shippedDate').textContent = data.shippedDate || '';
+document.getElementById('pickupTime').textContent = data.pickUpTime || '';
+document.getElementById('departureTime').textContent = data.departure || '';
+document.getElementById('mode').textContent = data.mode || '';
+document.getElementById('product').textContent = data.product || '';
+document.getElementById('quantity').textContent = data.quantity || '';
+document.getElementById('payment').textContent = data.payment || '';
+document.getElementById('totalFreight').textContent = data.totalFreight || '';
+
+          // Timeline
+          const timeline = document.querySelector('.timeline');
+          timeline.innerHTML = '';
+          (data.log || []).forEach(entry => {
+            const div = document.createElement('div');
+            div.classList.add('timeline-entry');
+            div.innerHTML = `<h4>${entry.status} - ${entry.date}, ${entry.time}</h4><p>${entry.location}</p>`;
+            timeline.appendChild(div);
+          });
+
+          // History
+          const historyTable = document.querySelector('.shipment-table tbody');
+          historyTable.innerHTML = '';
+          (data.history || []).forEach(entry => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${entry.date}</td><td>${entry.time}</td><td>${entry.location}</td><td>${entry.status}</td><td>${entry.updatedBy}</td><td>${entry.remarks}</td>`;
+            historyTable.appendChild(row);
+          });
+
+          // Packages
+          const packageTable = document.querySelector('.package-table tbody');
+          packageTable.innerHTML = '';
+          (data.packages || []).forEach(entry => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${entry.qty}</td><td>${entry.pieceType}</td><td>${entry.description}</td><td>${entry.length}</td><td>${entry.width}</td><td>${entry.height}</td><td>${entry.weight}</td>`;
+            packageTable.appendChild(row);
+          });
+
+          // Status
+          document.querySelector('.status-indicator').textContent = `SHIPMENT STATUS: ${data.status}`;
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error fetching tracking info.');
+        }
+      };
+
+      fetchShipmentData();
+    });
+
+
+  </script>
+</body>
+</html>

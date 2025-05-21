@@ -1,0 +1,1164 @@
+.header-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; /* <-- This controls the header height */
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 80px;
+  width: auto;
+  display: block;
+}
+/* MENU TOGGLE ICON */
+.menu-toggle {
+  font-size: 28px;
+  color: #00253a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: transparent;
+  border: none;
+}
+
+/* SLIDE-IN MENU */
+#menu {
+  position: fixed;
+  top: 0;
+  right: -260px; /* hidden by default */
+  width: 240px;
+  height: 100vh;
+  background-color: #00253a;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+  transition: right 0.4s ease-in-out;
+  z-index: 999;
+}
+
+/* Active menu state */
+#menu.active {
+  right: 0;
+}
+
+/* MENU LINKS */
+#menu a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 0;
+  font-size: 16px;
+  border-bottom: 1px solid #ffffff22;
+  transition: all 0.3s ease;
+}
+
+#menu a:hover {
+  color: #00c3ff;
+  padding-left: 10px;
+}
+
+
+nav#menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 15px 0;
+  transition: color 0.3s;
+}
+
+nav#menu a:hover {
+  color: #ffa500;
+}
+
+
+
+/* Slide-in menu */
+#menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100vh;
+  background-color: #00253a;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+  transition: right 0.4s ease-in-out;
+  z-index: 10000;
+}
+
+/* Active menu state */
+#menu.active {
+  right: 0;
+}
+
+/* Menu header */
+#menu .menu-header {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ffffff33;
+  padding-bottom: 10px;
+}
+
+/* Menu links */
+#menu a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 0;
+  font-size: 16px;
+  border-bottom: 1px solid #ffffff22;
+  transition: all 0.3s ease;
+}
+
+#menu a:hover {
+  color: #00c3ff;
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+/* Chat Input */
+.chat-input {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background: #fafafa;
+  display: flex;  /* Always display */
+  transition: display 0.3s ease-in-out;  /* Smooth transition */
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;  /* Prevent zoom on iOS */
+}
+
+.chat-input button {
+  background: #082336;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-left: 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+.zoom-in {
+      opacity: 1 !important;
+      transform: scale(1) !important;
+      transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .fade-zoom {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .section-title, .team-member, .hero-section, .service-card, .faq-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Shake animation for invalid tracking input */
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Apply shake animation to tracking input when invalid */
+    #trackingForm input.shake {
+      animation: shake 0.6s ease;
+    }
+
+    /* Styling for the tracking input when there is an error */
+    #trackingForm input.error {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+
+    /* Styling for the tracking form */
+  #trackingForm {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+#trackingForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  align-items: center;    /* Center align the items */
+  gap: 10px;              /* Add space between input and button */
+}
+
+#trackingForm input,
+#trackingForm button {
+  width: 90%; /* Keep them full width on all screens */
+  max-width: 400px; /* Optional: limit width on desktop */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+    #trackingForm button:hover {
+      background-color: #00253a;
+    }
+/* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Header with diagonal split */
+header {
+  background: linear-gradient(135deg, white 50%, #082336 50%);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+
+}
+
+nav {
+  position: absolute;
+  top: 50px; /* Same as .header-top height */
+  right: 0;
+  width: 100%;
+  background-color: rgba(8, 35, 54, 0.95);
+  padding: 40px 20px;
+  display: none;
+  flex-direction: column;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  z-index: 10;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px; /* Increase font size */
+  padding: 15px 0;  /* Add spacing between links */
+  transition: color 0.3s;
+}
+
+
+
+
+
+nav a:hover {
+  color: #ffa500;
+}
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    ...
+  }
+}
+
+/* Mobile nav toggle */
+.menu-toggle {
+  display: block;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 9;
+}
+.menu-overlay.show {
+  display: block;
+}
+nav.visible {
+  display: flex !important;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+
+
+
+
+
+/* Hero Section */
+.hero-section {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  color: white;
+  text-align: center;
+  background: url('cargo.jpeg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-content h1 {
+  font-size: 2.4em;
+}
+.hero-content .blue {
+  color: white;
+}
+.sub-text {
+  font-size: 1em;
+}
+.hero-section p {
+  margin: 15px 0;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+
+
+
+/* Shake animation for invalid tracking input */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Apply shake animation to tracking input when invalid */
+#trackingForm input.shake {
+  animation: shake 0.6s ease;
+}
+
+/* Styling for the tracking input when there is an error */
+#trackingForm input.error {
+  border: 2px solid red !important;
+  background-color: white;
+  color:  #00253a;
+}
+
+/* Styling for the tracking form */#trackingForm {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+}
+
+#trackingForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  align-items: center;    /* Center align the items */
+  gap: 10px;              /* Add space between input and button */
+}
+
+#trackingForm input,
+#trackingForm button {
+  width: 90%; /* Keep them full width on all screens */
+  max-width: 400px; /* Optional: limit width on desktop */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+#trackingForm button:hover {
+  background-color: #00253a;
+}
+@media (max-width: 768px) {
+  #trackingForm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #trackingForm input,
+  #trackingForm button {
+    width: 90%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  #trackingForm input {
+    margin-bottom: 10px;
+    border-right: 1px solid #ccc;
+  }
+}
+
+
+
+/* Section Styles */
+section {
+  padding: 60px 20px;
+}
+.team-section, .faq-section, .trust-section, #services {
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  margin: 40px auto;
+  max-width: 1100px;
+}
+.section-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+.section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+}
+
+/* Team Section */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.team-member {
+  max-width: 300px;
+  text-align: center;
+}
+.team-member img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+.team-member.visible img {
+  transform: scale(1.05);
+}
+.team-caption {
+  margin-top: 10px;
+  font-size: 0.95em;
+}
+
+/* FAQ Section */
+.faq-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+.faq-question {
+  background: none;
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+color: #082336;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.faq-item.active .faq-answer {
+  max-height: 150px;
+}
+
+/* Services */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.service-card {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.3s, background 0.3s;
+}
+.service-card:hover {
+  background: #e6f7ff;
+  transform: scale(1.03);
+}
+
+/* Trust Section */
+.trust-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+.trust-section img {
+  max-height: 60px;
+}
+
+/* Spinner Loader */
+.page-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255,255,255,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #00bfff;
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 1.5s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.zoom-in {
+  animation: zoomIn 0.6s ease forwards;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Google-style menu animation */
+nav.slide-in {
+  transform: translateX(0);
+  opacity: 1;
+}
+nav.slide-out {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(8, 35, 54, 0.95);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 40px 20px;
+    z-index: 10;
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  nav.visible {
+    display: flex !important;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+  }
+  nav a {
+    color: #fff;
+    font-size: 1.4em;
+    text-align: center;
+    padding: 15px 0;
+  }
+  nav a:hover {
+    color: #ffa500;
+  }
+  .menu-toggle {
+    display: block;
+  }
+
+  #trackingForm {
+    flex-direction: column;
+    align-items: center;
+  }
+  #trackingForm input,
+  #trackingForm button {
+    width: 90%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  #trackingForm input {
+    margin-bottom: 10px;
+    border-right: 1px solid #ccc;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* Base Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Chat Button */
+#chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #082336;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+
+/* Chat Widget Container */
+#chat-widget {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 320px; /* Set fixed width */
+  height: 500px; /* Set fixed height */
+  display: none;
+  flex-direction: column;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Chat Header */
+.chat-header {
+  background: #f1f1f1;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-title {
+  display: flex;
+  align-items: center;
+}
+
+.chat-title .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-title .name {
+  font-weight: bold;
+}
+
+.chat-title .status {
+  font-size: 12px;
+  color: green;
+}
+
+.chat-header .close {
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+}
+
+/* Chat Body */
+.chat-body {
+  padding: 15px;
+  font-size: 16px;
+  overflow-y: auto;
+  flex-grow: 1;
+  background: #ffffff;
+}
+
+/* Chat Bubbles */
+.bubble {
+  padding: 10px 15px;
+  margin: 8px 0;
+  border-radius: 20px;
+  max-width: 75%;
+  line-height: 1.4em;
+  display: inline-block;
+}
+
+.bubble.user {
+  background: #082336;
+  color: white;
+  float: right;
+  clear: both;
+}
+
+.bubble.bot {
+  background: #e6e6e6;
+  color: #000;
+  float: left;
+  clear: both;
+}
+
+
+
+/* Send Button */
+.chat-input button {
+  background: #082336;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-left: 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Footer Branding */
+.powered {
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+  color: #999;
+  background: #f1f1f1;
+}
+
+/* Prevent iOS Zoom on Focus */
+input, textarea, select, button {
+  font-size: 16px !important;
+}
+
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  height: 100%;
+  background-color: ;
+}
+
+.split-container {
+  display: flex;
+  min-height: 100vh;
+  flex-wrap: wrap;
+}
+
+.left-panel, .right-panel {
+  flex: 1;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 300px;
+}
+
+.left-panel {
+  background-color: #ffffff;
+  color: #082336;
+}
+
+.left-panel h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin: 15px 0 5px;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #082336;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+form button {
+  background-color: #082336;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0a2f47;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.error {
+  color: red;
+}
+
+.right-panel {
+  background-color: #082336;
+  color: white;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-panel h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.right-panel p {
+  font-size: 1.1em;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+  }
+
+  .left-panel, .right-panel {
+    padding: 40px 20px;
+  }
+
+  .right-panel {
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.testimonial-section {
+  background-color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-top: 2px solid #e0e0e0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.section-title {
+  font-size: 2.4em;
+  color: #082336;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.testimonial-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  flex: 1 1 300px;
+  background-color: #f4f6f8;
+  border-left: 4px solid #082336;
+  padding: 25px 20px;
+  border-radius: 6px;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+.testimonial-card:hover {
+  background-color: #eef1f3;
+}
+
+.testimonial-text {
+  font-size: 1em;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: #082336;
+  font-size: 0.95em;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General Section Styling */
+.blog-section {
+  
+  color: #082336;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blog-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #082336;
+}
+
+.section-intro {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+/* Blog Posts Grid */
+.blog-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Individual Blog Post */
+.blog-post {
+  background-color: #f5f9fc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+}
+
+.blog-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.post-content {
+  padding: 20px;
+}
+
+.post-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.post-content h2 a {
+  text-decoration: none;
+  color: #082336;
+  transition: color 0.3s ease;
+}
+
+.post-content h2 a:hover {
+  color: #004470;
+}
+
+.post-excerpt {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.read-more {
+  display: inline-block;
+  font-weight: bold;
+  color: white;
+  background-color: #082336;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+  background-color: #004470;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #082336;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-container p {
+  margin: 0;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+.site-footer {
+  background-color: #00253a;
+  color: white;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  width: 120px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.footer-left p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #00bfff;
+}
+
+.footer-contact p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.footer-contact i {
+  margin-right: 8px;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 15px;
+  margin-top: 30px;
+  font-size: 13px;
+}

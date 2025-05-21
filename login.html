@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>Get Started Login - United Nation Cargo Express</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #00253a; /* Teal background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 0 15px;
+    }
+
+    .login-wrapper {
+      background-color: #ffffff;
+      padding: 50px 40px;
+      border-radius: 18px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    /* Close button (X) */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #00253a;
+    }
+
+    .login-wrapper h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #00253a; /* Navy blue */
+      font-size: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 16px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #00b7b7;
+      box-shadow: 0 0 5px rgba(0, 183, 183, 0.3);
+    }
+
+    .checkbox-label {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 16px;
+      font-size: 18px;
+      background-color: #00253a;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #001d2e;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #f7a600;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 20px;
+    }
+
+    /* Prevent zoom on input focus */
+    input[type="email"],
+    input[type="password"] {
+      font-size: 16px !important;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      .login-wrapper {
+        padding: 40px 25px;
+      }
+
+      .login-wrapper h2 {
+        font-size: 24px;
+      }
+
+      .login-btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+
+      .close-btn {
+        font-size: 20px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <span class="close-btn" onclick="window.location.href='index.html'">X</span>
+    <h2>Get Started Login</h2>
+
+    <div class="error-message" id="error"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Email address" required />
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+
+      <div class="checkbox-label">
+        <input type="checkbox" id="showPassword" />
+        <label for="showPassword">Show password</label>
+      </div>
+
+      <button type="submit" class="login-btn">
+        <span id="btnText">Get Started</span>
+        <span id="spinner" style="display: none;">⏳</span>
+      </button>
+    </form>
+
+    <div class="links">
+      <p><a href="#">Forgot password?</a></p>
+      <p>Don’t have an account? <a href="register.html">Sign up</a></p>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 United Nation Cargo Express. All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("showPassword").addEventListener("change", function () {
+      const passwordInput = document.getElementById("password");
+      passwordInput.type = this.checked ? "text" : "password";
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorDiv = document.getElementById("error");
+      const spinner = document.getElementById("spinner");
+      const btnText = document.getElementById("btnText");
+
+      errorDiv.style.display = "none";
+
+      if (!email || !password) {
+        errorDiv.textContent = "Please enter both email and password.";
+        errorDiv.style.display = "block";
+        return;
+      }
+
+      btnText.textContent = "Logging in...";
+      spinner.style.display = "inline";
+
+      // Simulated login logic (replace with real logic)
+      setTimeout(() => {
+        if (email === "user@example.com" && password === "password123") {
+          window.location.href = "profile.html";
+        } else {
+          errorDiv.textContent = "Invalid email or password.";
+          errorDiv.style.display = "block";
+        }
+
+        btnText.textContent = "Get Started";
+        spinner.style.display = "none";
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
