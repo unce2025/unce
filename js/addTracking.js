@@ -4,21 +4,21 @@ async function submitShipment(shipmentData) {
   try {
     const response = await fetch(RELAY_URL, {
       method: 'POST',
-      body: JSON.stringify(shipmentData),
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify(shipmentData),
     });
 
     const result = await response.json();
 
     if (result.success) {
-      alert('Shipment saved!');
+      alert('Shipment saved successfully!');
     } else {
       alert('Failed to save shipment.');
     }
   } catch (error) {
-    console.error('Error:', error);
-    alert('Failed to submit data.');
+    console.error('Error saving shipment:', error);
+    alert('Error submitting shipment data.');
   }
 }
