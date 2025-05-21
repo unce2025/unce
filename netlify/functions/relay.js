@@ -1,43 +1,30 @@
-export async function handler(event, context) {
-  const TARGET_URL = "https://script.google.com/macros/s/AKfycbz_NrN4dnBf43IRXMw4RjsKff5C5EDbNh9XqCyjsKbyuFTcRWVZE96fGzUDmFbkQ2KW/exec";
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbz_NrN4dnBf43IRXMw4RjsKff5C5EDbNh9XqCyjsKbyuFTcRWVZE96fGzUDmFbkQ2KW/exec';
 
-  const method = event.httpMethod;
-  const headers = {
-    'Content-Type': 'application/json'
-  };
+exports.handler = async function(event) {
+  const tracking = event.queryStringParameters.tracking;
+
+  if (!tracking) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ success: false, message: 'Tracking number required' }),
+    };
+  }
 
   try {
-    let response;
-    if (method === "GET") {
-      const query = event.rawQuery || "";
-      response = await fetch(`${TARGET_URL}?${query}`, { method, headers });
-    } else if (method === "POST") {
-      response = await fetch(TARGET_URL, {
-        method,
-        headers,
-        body: event.body
-      });
-    } else {
-      return {
-        statusCode: 405,
-        body: JSON.stringify({ error: "Method not allowed" })
-      };
-    }
+    const response = await fetch(`${GAS_URL}?tracking=${encodeURIComponent(tracking)}`);
+    const data = await response.json();
 
-    const data = await response.text();
     return {
       statusCode: 200,
+      body: JSON.stringify(data),
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*"
+        'Access-Control-Allow-Origin': '*',
       },
-      body: data
     };
-
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: err.message })
+      body: JSON.stringify({ success: false, message: 'Error fetching data' }),
     };
   }
-}
+};
