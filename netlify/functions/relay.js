@@ -1,51 +1,50 @@
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbz_NrN4dnBf43IRXMw4RjsKff5C5EDbNh9XqCyjsKbyuFTcRWVZE96fGzUDmFbkQ2KW/exec';
+const endpoint = 'https://script.google.com/macros/s/AKfycbw-3HuIdKt0STynAuZZxOC51kAVhd6hBp7kd3UChOX5dN6S2hUqBaRbJW81aOr63nY/exec';
 
-exports.handler = async function(event) {
+/**
+ * Fetch shipment data by tracking number (used in status.html)
+ * @param {string} trackingNumber
+ * @returns {Promise<object>}
+ */
+async function fetchShipment(trackingNumber) {
+  const url = `${endpoint}?tracking=${encodeURIComponent(trackingNumber)}`;
+
   try {
-    if (event.httpMethod === 'GET') {
-      const tracking = event.queryStringParameters.tracking;
-
-      if (!tracking) {
-        return {
-          statusCode: 400,
-          body: JSON.stringify({ success: false, message: 'Tracking number required' }),
-        };
-      }
-
-      const response = await fetch(`${GAS_URL}?tracking=${encodeURIComponent(tracking)}`);
-      const data = await response.json();
-
-      return {
-        statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify(data),
-      };
+    const response = await fetch(url);
+    const result = await response.json();
+    if (!result.success || !result.shipment) {
+      throw new Error('Shipment not found.');
     }
-
-    if (event.httpMethod === 'POST') {
-      const body = JSON.parse(event.body);
-      const response = await fetch(GAS_URL, {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      const data = await response.json();
-      return {
-        statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify(data),
-      };
-    }
-
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ success: false, message: 'Method Not Allowed' }),
-    };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, message: 'Error processing request' }),
-    };
+    return result.shipment;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
   }
-};
+}
+
+/**
+ * Save or update a shipment (used in admin.html)
+ * @param {object} shipmentData
+ * @returns {Promise<object>}
+ */
+async function saveShipment(shipmentData) {
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(shipmentData)
+    });
+
+    const result = await response.json();
+    if (!result.success) {
+      throw new Error(result.message || 'Failed to save shipment.');
+    }
+
+    return result;
+  } catch (error) {
+    console.error('Save error:', error);
+    throw error;
+  }
+}
