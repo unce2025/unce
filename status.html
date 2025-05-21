@@ -319,83 +319,28 @@ th {
     <a href="index.html" class="back-btn">Back to Home</a>
   </div>
 
-  <script>
+ <!-- Include relay.js first -->
+<script src="relay.js"></script>
+
+<!-- Then your existing script that uses fetchShipment -->
+<script>
   document.addEventListener('DOMContentLoaded', async function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const trackingNumber = urlParams.get('tracking');
+    const urlParams = new URLSearchParams(window.location.search);
+    const trackingNumber = urlParams.get('tracking');
 
-  if (!trackingNumber) {
-    alert('No tracking number provided.');
-    return;
-  }
+    if (!trackingNumber) {
+      alert('No tracking number provided.');
+      return;
+    }
 
-  try {
-    const data = await fetchShipment(trackingNumber);
+    try {
+      const data = await fetchShipment(trackingNumber);
+      // Populate shipment info...
+    } catch (error) {
+      alert(error.message || 'Error fetching shipment data.');
+    }
+  });
+</script>
 
-    // Populate fields as before:
-    document.getElementById('barcodeImage').src = `https://barcode.tec-it.com/barcode.ashx?data=${trackingNumber}&code=Code128&imagetype=Gif`;
-
-    document.getElementById('shipperName').textContent = data.shipperName || '';
-    document.getElementById('shipperAddress').textContent = data.shipperAddress || '';
-    document.getElementById('shipperEmail').textContent = data.shipperEmail || '';
-    document.getElementById('shipperPhone').textContent = data.shipperPhone || '';
-    document.getElementById('receiverName').textContent = data.receiverName || '';
-    document.getElementById('receiverAddress').textContent = data.receiverAddress || '';
-    document.getElementById('receiverEmail').textContent = data.receiverEmail || '';
-    document.getElementById('receiverPhone').textContent = data.receiverPhone || '';
-    document.getElementById('estimatedDeliveryDate').textContent = data.estimatedDeliveryDate || '';
-    document.getElementById('shippedDate').textContent = data.shippedDate || '';
-    document.getElementById('pickupTime').textContent = data.pickUpTime || '';
-    document.getElementById('departureTime').textContent = data.departure || '';
-    document.getElementById('mode').textContent = data.mode || '';
-    document.getElementById('product').textContent = data.product || '';
-    document.getElementById('quantity').textContent = data.quantity || '';
-    document.getElementById('payment').textContent = data.payment || '';
-    document.getElementById('totalFreight').textContent = data.totalFreight || '';
-
-    // Fill Shipment History table
-    const historyTable = document.querySelector('.shipment-table tbody');
-    historyTable.innerHTML = '';
-    (data.history || []).forEach(entry => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${entry.date}</td>
-        <td>${entry.time}</td>
-        <td>${entry.location}</td>
-        <td>${entry.status}</td>
-        <td>${entry.updatedBy}</td>
-        <td>${entry.remarks}</td>
-      `;
-      historyTable.appendChild(row);
-    });
-
-    // Fill Packages table
-    const packageTable = document.querySelector('.package-table tbody');
-    packageTable.innerHTML = '';
-    (data.packages || []).forEach(pkg => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${pkg.qty}</td>
-        <td>${pkg.pieceType}</td>
-        <td>${pkg.description}</td>
-        <td>${pkg.length}</td>
-        <td>${pkg.width}</td>
-        <td>${pkg.height}</td>
-        <td>${pkg.weight}</td>
-      `;
-      packageTable.appendChild(row);
-    });
-
-    // Update shipment status badge or indicator
-    document.querySelector('.status-indicator').textContent = `SHIPMENT STATUS: ${data.status || 'Unknown'}`;
-
-  } catch (error) {
-    alert(error.message || 'Error fetching shipment data.');
-  }
-});
-
-
-
-  </script>
 </body>
 </html>
