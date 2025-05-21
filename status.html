@@ -319,87 +319,70 @@ th {
     <a href="index.html" class="back-btn">Back to Home</a>
   </div>
 
- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const trackingNumber = urlParams.get('tracking');
+<script>
+  // Get tracking number from URL query string
+  const urlParams = new URLSearchParams(window.location.search);
+  const trackingNumber = urlParams.get('tracking');
 
-    if (!trackingNumber) {
-      alert('No tracking number provided.');
-      return;
+  if (!trackingNumber) {
+    alert('No tracking number provided in URL.');
+  } else {
+    fetchShipmentData(trackingNumber);
+  }
+
+  async function fetchShipmentData(trackingNumber) {
+    try {
+      // Replace this URL with your real API endpoint
+      const response = await fetch('/.netlify/functions/relay?tracking=' + encodeURIComponent(trackingNumber));
+      const result = await response.json();
+
+      if (!result.success || !result.shipment) {
+        alert('Tracking number not found.');
+        return;
+      }
+
+      const data = result.shipment;
+
+      // Parse log, history, packages if they are JSON strings
+      data.log = typeof data.log === 'string' ? JSON.parse(data.log) : data.log || [];
+      data.history = typeof data.history === 'string' ? JSON.parse(data.history) : data.history || [];
+      data.packages = typeof data.packages === 'string' ? JSON.parse(data.packages) : data.packages || [];
+
+      displayShipmentData(data);
+
+    } catch (error) {
+      console.error('Error fetching shipment data:', error);
+      alert('Error fetching tracking info. Please try again later.');
+    }
+  }
+
+  // Update your page with the shipment data
+  function displayShipmentData(data) {
+    // Example: Update status text
+    document.getElementById('status').textContent = data.Status || 'N/A';
+    document.getElementById('shipperName').textContent = data.ShipperName || 'N/A';
+    document.getElementById('shipperPhone').textContent = data.ShipperPhone || 'N/A';
+    document.getElementById('receiverName').textContent = data.ReceiverName || 'N/A';
+    document.getElementById('receiverPhone').textContent = data.ReceiverPhone || 'N/A';
+    // Add more fields as needed, matching your HTML element IDs
+
+    // Example for displaying log as a list
+    const logContainer = document.getElementById('log');
+    logContainer.innerHTML = '';
+    if (data.log.length > 0) {
+      data.log.forEach(entry => {
+        const li = document.createElement('li');
+        li.textContent = `${entry.date} - ${entry.description}`;
+        logContainer.appendChild(li);
+      });
+    } else {
+      logContainer.textContent = 'No log entries available.';
     }
 
-    const fetchShipmentData = async () => {
-      try {
-        const response = await fetch('/.netlify/functions/relay?tracking=' + encodeURIComponent(trackingNumber));
-        const result = await response.json();
-
-        if (!result.success || !result.shipment) {
-          alert('Tracking number not found.');
-          return;
-        }
-
-        const data = result.shipment;
-
-        document.getElementById('barcodeImage').src = `https://barcode.tec-it.com/barcode.ashx?data=${trackingNumber}&code=Code128&imagetype=Gif`;
-
-        document.getElementById('shipperName').textContent = data.shipperName || '';
-        document.getElementById('shipperAddress').textContent = data.shipperAddress || '';
-        document.getElementById('shipperEmail').textContent = data.shipperEmail || '';
-        document.getElementById('shipperPhone').textContent = data.shipperPhone || '';
-        document.getElementById('receiverName').textContent = data.receiverName || '';
-        document.getElementById('receiverAddress').textContent = data.receiverAddress || '';
-        document.getElementById('receiverEmail').textContent = data.receiverEmail || '';
-        document.getElementById('receiverPhone').textContent = data.receiverPhone || '';
-        document.getElementById('estimatedDeliveryDate').textContent = data.estimatedDeliveryDate || '';
-        document.getElementById('shippedDate').textContent = data.shippedDate || '';
-        document.getElementById('pickupTime').textContent = data.pickUpTime || '';
-        document.getElementById('departureTime').textContent = data.departure || '';
-        document.getElementById('mode').textContent = data.mode || '';
-        document.getElementById('product').textContent = data.product || '';
-        document.getElementById('quantity').textContent = data.quantity || '';
-        document.getElementById('payment').textContent = data.payment || '';
-        document.getElementById('totalFreight').textContent = data.totalFreight || '';
-
-        // Timeline
-        const timeline = document.querySelector('.timeline');
-        timeline.innerHTML = '';
-        (data.log || []).forEach(entry => {
-          const div = document.createElement('div');
-          div.classList.add('timeline-entry');
-          div.innerHTML = `<h4>${entry.status} - ${entry.date}, ${entry.time}</h4><p>${entry.location}</p>`;
-          timeline.appendChild(div);
-        });
-
-        // History
-        const historyTable = document.querySelector('.shipment-table tbody');
-        historyTable.innerHTML = '';
-        (data.history || []).forEach(entry => {
-          const row = document.createElement('tr');
-          row.innerHTML = `<td>${entry.date}</td><td>${entry.time}</td><td>${entry.location}</td><td>${entry.status}</td><td>${entry.updatedBy}</td><td>${entry.remarks}</td>`;
-          historyTable.appendChild(row);
-        });
-
-        // Packages
-        const packageTable = document.querySelector('.package-table tbody');
-        packageTable.innerHTML = '';
-        (data.packages || []).forEach(entry => {
-          const row = document.createElement('tr');
-          row.innerHTML = `<td>${entry.qty}</td><td>${entry.pieceType}</td><td>${entry.description}</td><td>${entry.length}</td><td>${entry.width}</td><td>${entry.height}</td><td>${entry.weight}</td>`;
-          packageTable.appendChild(row);
-        });
-
-        // Status
-        document.querySelector('.status-indicator').textContent = `SHIPMENT STATUS: ${data.status}`;
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Error fetching tracking info.');
-      }
-    };
-
-    fetchShipmentData();
-  });
+    // Similar approach for history and packages...
+  }
 </script>
+
 
 </body>
 </html>
