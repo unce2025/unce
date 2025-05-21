@@ -1,30 +1,66 @@
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbz_NrN4dnBf43IRXMw4RjsKff5C5EDbNh9XqCyjsKbyuFTcRWVZE96fGzUDmFbkQ2KW/exec';
 
 exports.handler = async function(event) {
-  const tracking = event.queryStringParameters.tracking;
+  const method = event.httpMethod;
 
-  if (!tracking) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ success: false, message: 'Tracking number required' }),
-    };
+  if (method === 'GET') {
+    const tracking = event.queryStringParameters.tracking;
+
+    if (!tracking) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ success: false, message: 'Tracking number required' }),
+      };
+    }
+
+    try {
+      const response = await fetch(`${GAS_URL}?tracking=${encodeURIComponent(tracking)}`);
+      const data = await response.json();
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify(data),
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      };
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ success: false, message: 'Error fetching data' }),
+      };
+    }
   }
 
-  try {
-    const response = await fetch(`${GAS_URL}?tracking=${encodeURIComponent(tracking)}`);
-    const data = await response.json();
+  if (method === 'POST') {
+    try {
+      const postData = JSON.parse(event.body);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(data),
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, message: 'Error fetching data' }),
-    };
+      const response = await fetch(GAS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(postData),
+      });
+
+      const data = await response.json();
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify(data),
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      };
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ success: false, message: 'Error saving data' }),
+      };
+    }
   }
+
+  return {
+    statusCode: 405,
+    body: JSON.stringify({ success: false, message: 'Method not allowed' }),
+  };
 };
