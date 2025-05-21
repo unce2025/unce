@@ -320,20 +320,9 @@ th {
   </div>
 
 <script>
-  // Get tracking number from URL query string
-  const urlParams = new URLSearchParams(window.location.search);
-  const trackingNumber = urlParams.get('tracking');
-
-  if (!trackingNumber) {
-    alert('No tracking number provided in URL.');
-  } else {
-    fetchShipmentData(trackingNumber);
-  }
-
   async function fetchShipmentData(trackingNumber) {
     try {
-      // Replace this URL with your real API endpoint
-      const response = await fetch('/.netlify/functions/relay?tracking=' + encodeURIComponent(trackingNumber));
+      const response = await fetch(`/.netlify/functions/relay?tracking=${encodeURIComponent(trackingNumber)}`);
       const result = await response.json();
 
       if (!result.success || !result.shipment) {
@@ -343,45 +332,79 @@ th {
 
       const data = result.shipment;
 
-      // Parse log, history, packages if they are JSON strings
+      // Parse JSON strings if necessary
       data.log = typeof data.log === 'string' ? JSON.parse(data.log) : data.log || [];
       data.history = typeof data.history === 'string' ? JSON.parse(data.history) : data.history || [];
       data.packages = typeof data.packages === 'string' ? JSON.parse(data.packages) : data.packages || [];
 
-      displayShipmentData(data);
+      displayShipment(data);
 
     } catch (error) {
-      console.error('Error fetching shipment data:', error);
-      alert('Error fetching tracking info. Please try again later.');
+      console.error('Error:', error);
+      alert('Error fetching tracking info.');
     }
   }
 
-  // Update your page with the shipment data
-  function displayShipmentData(data) {
-    // Example: Update status text
+  function displayShipment(data) {
+    // Example fields – adjust based on your HTML IDs
+    document.getElementById('trackingNumber').textContent = data.TrackingNumber || 'N/A';
     document.getElementById('status').textContent = data.Status || 'N/A';
     document.getElementById('shipperName').textContent = data.ShipperName || 'N/A';
-    document.getElementById('shipperPhone').textContent = data.ShipperPhone || 'N/A';
     document.getElementById('receiverName').textContent = data.ReceiverName || 'N/A';
-    document.getElementById('receiverPhone').textContent = data.ReceiverPhone || 'N/A';
-    // Add more fields as needed, matching your HTML element IDs
+    document.getElementById('shippedDate').textContent = data.ShippedDate || 'N/A';
+    document.getElementById('estimatedDeliveryDate').textContent = data.EstimatedDeliveryDate || 'N/A';
+    document.getElementById('mode').textContent = data.Mode || 'N/A';
+    document.getElementById('product').textContent = data.Product || 'N/A';
+    document.getElementById('quantity').textContent = data.Quantity || 'N/A';
+    document.getElementById('totalFreight').textContent = data.TotalFreight || 'N/A';
 
-    // Example for displaying log as a list
-    const logContainer = document.getElementById('log');
+    // Render history (assuming an element with id="historyTimeline")
+    const historyContainer = document.getElementById('historyTimeline');
+    historyContainer.innerHTML = '';
+    data.history.forEach(entry => {
+      const div = document.createElement('div');
+      div.className = 'history-entry';
+      div.innerHTML = `
+        <strong>${entry.Date} ${entry.Time}</strong> - ${entry.Location}<br>
+        <em>${entry.Status}</em>: ${entry.Remarks} (By: ${entry.UpdatedBy})
+      `;
+      historyContainer.appendChild(div);
+    });
+
+    // Render log (assuming an element with id="logList")
+    const logContainer = document.getElementById('logList');
     logContainer.innerHTML = '';
-    if (data.log.length > 0) {
-      data.log.forEach(entry => {
-        const li = document.createElement('li');
-        li.textContent = `${entry.date} - ${entry.description}`;
-        logContainer.appendChild(li);
-      });
-    } else {
-      logContainer.textContent = 'No log entries available.';
-    }
+    data.log.forEach(entry => {
+      const li = document.createElement('li');
+      li.textContent = `${entry.date || ''} - ${entry.description || ''}`;
+      logContainer.appendChild(li);
+    });
 
-    // Similar approach for history and packages...
+    // Render packages (assuming an element with id="packageList")
+    const packageContainer = document.getElementById('packageList');
+    packageContainer.innerHTML = '';
+    data.packages.forEach(pkg => {
+      const div = document.createElement('div');
+      div.className = 'package-entry';
+      div.innerHTML = `
+        <strong>Weight:</strong> ${pkg.weight || 'N/A'}<br>
+        <strong>Description:</strong> ${pkg.description || 'N/A'}
+      `;
+      packageContainer.appendChild(div);
+    });
   }
+
+  // Call this on page load or on form submit
+  window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const trackingNumber = urlParams.get('tracking');
+
+    if (trackingNumber) {
+      fetchShipmentData(trackingNumber);
+    }
+  };
 </script>
+
 
 
 </body>
