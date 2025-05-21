@@ -4,9 +4,15 @@ async function getTracking(trackingNumber) {
   try {
     const response = await fetch(`${RELAY_URL}?tracking=${encodeURIComponent(trackingNumber)}`);
     const result = await response.json();
-    displayShipment(result.shipment); // Your display function
+
+    if (result.success === false || !result.shipment) {
+      alert('Tracking not found.');
+      return;
+    }
+
+    displayShipment(result.shipment);
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Fetch error:', error);
     alert('Failed to fetch tracking data.');
   }
 }
