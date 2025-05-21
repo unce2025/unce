@@ -1,4 +1,3 @@
-
 export async function handler(event, context) {
   const TARGET_URL = "https://script.google.com/macros/s/AKfycbz_NrN4dnBf43IRXMw4RjsKff5C5EDbNh9XqCyjsKbyuFTcRWVZE96fGzUDmFbkQ2KW/exec";
 
@@ -7,8 +6,8 @@ export async function handler(event, context) {
     'Content-Type': 'application/json'
   };
 
-  let response;
   try {
+    let response;
     if (method === "GET") {
       const query = event.rawQuery || "";
       response = await fetch(`${TARGET_URL}?${query}`, { method, headers });
@@ -42,4 +41,3 @@ export async function handler(event, context) {
     };
   }
 }
-
