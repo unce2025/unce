@@ -69,74 +69,88 @@
     <button onclick="editShipment()">Update Shipment</button>
   </div>
 
-  <script>
-    const apiUrl = 'https://yourdomain.com/api.php'; // Replace with your actual PHP API URL
+<!-- Firebase App (Core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
 
-    function getFormData() {
-      return {
-        tracking_number: document.getElementById('tracking').value,
-        status: document.getElementById('status').value,
-        shipper_name: document.getElementById('shipper_name').value,
-        shipper_phone: document.getElementById('shipper_phone').value,
-        shipper_address: document.getElementById('shipper_address').value,
-        shipper_email: document.getElementById('shipper_email').value,
-        receiver_name: document.getElementById('receiver_name').value,
-        receiver_phone: document.getElementById('receiver_phone').value,
-        receiver_address: document.getElementById('receiver_address').value,
-        receiver_email: document.getElementById('receiver_email').value,
-        estimated_delivery_date: document.getElementById('estimated_delivery_date').value,
-        shipped_date: document.getElementById('shipped_date').value,
-        flight_number: document.getElementById('flight_number').value,
-        package_weight: document.getElementById('package_weight').value,
-        mode: document.getElementById('mode').value,
-        product: document.getElementById('product').value,
-        quantity: document.getElementById('quantity').value,
-        payment: document.getElementById('payment').value,
-        total_freight: document.getElementById('total_freight').value,
-        history_json: document.getElementById('history_json').value,
-        log_json: document.getElementById('log_json').value
-      };
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAAtwtT0NhO6MaFmqXEFDYx6vY0HZgCss",
+    authDomain: "shipments-d92a4.firebaseapp.com",
+    projectId: "shipments-d92a4",
+    storageBucket: "shipments-d92a4.appspot.com",
+    messagingSenderId: "329068679585",
+    appId: "1:329068679585:web:9ad13fd05361853615bbe0",
+    measurementId: "G-HFR5K3QQEC"
+  };
+
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+<script>
+  async function addShipment() {
+    const tracking = document.getElementById("tracking").value;
+
+    if (!tracking) {
+      alert("Tracking Number is required.");
+      return;
     }
 
-    function searchShipment() {
-      const tracking = document.getElementById('tracking').value;
-      fetch(`${apiUrl}?action=search&tracking_number=${tracking}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.shipment) {
-            const d = data.shipment;
-            for (const key in d) {
-              if (document.getElementById(key)) {
-                document.getElementById(key).value = d[key];
-              }
-            }
-          } else {
-            alert("Shipment not found");
-          }
-        });
-    }
+    const shipmentData = {
+      status: document.getElementById("status").value,
+      shipper_name: document.getElementById("shipper_name").value,
+      shipper_phone: document.getElementById("shipper_phone").value,
+      shipper_address: document.getElementById("shipper_address").value,
+      shipper_email: document.getElementById("shipper_email").value,
+      receiver_name: document.getElementById("receiver_name").value,
+      receiver_phone: document.getElementById("receiver_phone").value,
+      receiver_address: document.getElementById("receiver_address").value,
+      receiver_email: document.getElementById("receiver_email").value,
+      estimated_delivery_date: document.getElementById("estimated_delivery_date").value,
+      shipped_date: document.getElementById("shipped_date").value,
+      flight_number: document.getElementById("flight_number").value,
+      package_weight: document.getElementById("package_weight").value,
+      mode: document.getElementById("mode").value,
+      product: document.getElementById("product").value,
+      quantity: +document.getElementById("quantity").value,
+      payment: document.getElementById("payment").value,
+      total_freight: document.getElementById("total_freight").value,
+      history_json: document.getElementById("history_json").value,
+      log_json: document.getElementById("log_json").value
+    };
 
-    function addShipment() {
-      const shipmentData = getFormData();
-      fetch(`${apiUrl}?action=add`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(shipmentData)
-      })
-      .then(res => res.json())
-      .then(data => alert(data.message || "Shipment added successfully"));
+    try {
+      await db.collection("shipments").doc(tracking).set(shipmentData);
+      alert("Shipment added successfully!");
+    } catch (error) {
+      console.error("Error adding shipment: ", error);
     }
+  }
 
-    function editShipment() {
-      const shipmentData = getFormData();
-      fetch(`${apiUrl}?action=edit`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(shipmentData)
-      })
-      .then(res => res.json())
-      .then(data => alert(data.message || "Shipment updated successfully"));
+  async function searchShipment() {
+    const tracking = document.getElementById("tracking").value;
+    if (!tracking) return;
+
+    try {
+      const doc = await db.collection("shipments").doc(tracking).get();
+      if (doc.exists) {
+        const data = doc.data();
+        for (let key in data) {
+          const el = document.getElementById(key);
+          if (el) el.value = data[key];
+        }
+      } else {
+        alert("Shipment not found.");
+      }
+    } catch (error) {
+      console.error("Error fetching shipment: ", error);
     }
-  </script>
+  }
+
+  async function editShipment() {
+    await addShipment(); // Since addShipment() uses .set() it will overwrite if exists
+  }
+</script>
+
 </body>
 </html>
