@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 // DB connection info - replace with your own
 $host = "localhost";          // your DB host, e.g. localhost
-$user = "your_db_username";   // your DB username
-$pass = "your_db_password";   // your DB password
-$dbname = "your_db_name";     // your DB name
+$user = "sql3780760";   // your DB username
+$pass = "sql3780760";   // your DB password
+$dbname = "7b6vGt5LVg";     // your DB name
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
