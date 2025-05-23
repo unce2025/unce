@@ -319,29 +319,7 @@ th {
     <a href="index.html" class="back-btn">Back to Home</a>
   </div>
 
- <!-- Include relay.js first -->
-<script src="/js/gettracking.js"></script>
 
-
-<!-- Then your existing script that uses fetchShipment -->
-<script>
-  document.addEventListener('DOMContentLoaded', async function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const trackingNumber = urlParams.get('tracking');
-
-    if (!trackingNumber) {
-      alert('No tracking number provided.');
-      return;
-    }
-
-    try {
-      const data = await fetchShipment(trackingNumber);
-      // Populate shipment info...
-    } catch (error) {
-      alert(error.message || 'Error fetching shipment data.');
-    }
-  });
-</script>
 
 </body>
 </html>
