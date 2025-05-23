@@ -1,225 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Admin Panel - United Nation Cargo Express</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root {
-      --primary: #001f4d;
-      --background: #ffffff;
-      --text: #000000;
-    }
-
     body {
-      font-family: Arial, sans-serif;
-      background: var(--background);
-      color: var(--text);
       margin: 0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #000;
     }
 
-    h2, h3 {
-      color: var(--primary);
+    header {
+      background-color: #001f3f;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
     }
 
-    label {
-      font-weight: bold;
+    .container {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
     }
 
-    input, textarea, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      margin-bottom: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .btn:hover {
-      background-color: #003366;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .flex {
+    .form-group {
       display: flex;
-      gap: 10px;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-actions {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
-    .flex > div {
-      flex: 1;
-      min-width: 150px;
+    button {
+      background-color: #001f3f;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #003366;
     }
 
     @media (max-width: 600px) {
-      .flex {
+      .form-group {
+        width: 100%;
+      }
+
+      .form-actions {
         flex-direction: column;
       }
-    }
-
-    .sub-section-title {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      color: var(--primary);
-    }
-
-    .history-entry {
-      background: #f2f2f2;
-      border-left: 5px solid var(--primary);
-      padding: 10px;
-      margin-top: 5px;
-      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <h2>Admin Panel - United Nation Cargo Express</h2>
+
+<header>
+  United Nation Cargo Express - Admin Panel
+</header>
+
+<div class="container">
+  <div class="form-group">
+    <label for="searchTracking">Search Tracking Number</label>
+    <input type="text" id="searchTracking" placeholder="Enter Tracking Number">
+    <button onclick="searchTracking()">Search</button>
+  </div>
 
   <form id="shipmentForm">
-    <!-- Search Section -->
-    <div class="section">
-      <label>Tracking Number</label>
-      <input type="text" id="TrackingNumber" inputmode="numeric" required />
-      <button type="button" class="btn" onclick="loadShipment()">🔍 Search by Tracking Number</button>
-    </div>
+    <div class="form-group"><label>Tracking Number</label><input id="TrackingNumber" required></div>
+    <div class="form-group"><label>Status</label><input id="Status"></div>
+    <div class="form-group"><label>Shipper Name</label><input id="ShipperName"></div>
+    <div class="form-group"><label>Shipper Phone</label><input id="ShipperPhone"></div>
+    <div class="form-group"><label>Shipper Address</label><input id="ShipperAddress"></div>
+    <div class="form-group"><label>Shipper Email</label><input id="ShipperEmail"></div>
+    <div class="form-group"><label>Receiver Name</label><input id="ReceiverName"></div>
+    <div class="form-group"><label>Receiver Phone</label><input id="ReceiverPhone"></div>
+    <div class="form-group"><label>Receiver Address</label><input id="ReceiverAddress"></div>
+    <div class="form-group"><label>Receiver Email</label><input id="ReceiverEmail"></div>
+    <div class="form-group"><label>Estimated Delivery Date</label><input type="date" id="EstimatedDeliveryDate"></div>
+    <div class="form-group"><label>Shipped Date</label><input type="date" id="ShippedDate"></div>
+    <div class="form-group"><label>Flight Number</label><input id="FlightNumber"></div>
+    <div class="form-group"><label>Package Weight</label><input id="PackageWeight"></div>
+    <div class="form-group"><label>Mode</label><input id="Mode"></div>
+    <div class="form-group"><label>Product</label><input id="Product"></div>
+    <div class="form-group"><label>Quantity</label><input id="Quantity"></div>
+    <div class="form-group"><label>Payment</label><input id="Payment"></div>
+    <div class="form-group"><label>Total Freight</label><input id="TotalFreight"></div>
+    <div class="form-group"><label>Log (JSON format)</label><textarea id="log" rows="3"></textarea></div>
+    <div class="form-group"><label>History (JSON format)</label><textarea id="history" rows="4"></textarea></div>
 
-    <!-- Shipment Details -->
-    <div class="section">
-      <h3 class="sub-section-title">Shipment Details</h3>
-
-      <label>Status</label>
-      <input type="text" id="Status" />
-
-      <label>Shipper Name</label>
-      <input type="text" id="ShipperName" />
-      <label>Shipper Phone</label>
-      <input type="tel" id="ShipperPhone" />
-      <label>Shipper Address</label>
-      <input type="text" id="ShipperAddress" />
-      <label>Shipper Email</label>
-      <input type="email" id="ShipperEmail" />
-
-      <label>Receiver Name</label>
-      <input type="text" id="ReceiverName" />
-      <label>Receiver Phone</label>
-      <input type="tel" id="ReceiverPhone" />
-      <label>Receiver Address</label>
-      <input type="text" id="ReceiverAddress" />
-      <label>Receiver Email</label>
-      <input type="email" id="ReceiverEmail" />
-
-      <label>Estimated Delivery Date</label>
-      <input type="date" id="EstimatedDeliveryDate" />
-      <label>Shipped Date</label>
-      <input type="date" id="ShippedDate" />
-
-      <label>Flight Number</label>
-      <input type="text" id="FlightNumber" />
-      <label>Package Weight</label>
-      <input type="text" id="PackageWeight" />
-      <label>Mode</label>
-      <input type="text" id="Mode" />
-      <label>Product</label>
-      <input type="text" id="Product" />
-      <label>Quantity</label>
-      <input type="number" id="Quantity" />
-      <label>Payment</label>
-      <input type="text" id="Payment" />
-      <label>Total Freight</label>
-      <input type="text" id="TotalFreight" />
-    </div>
-
-    <!-- Log -->
-    <div class="section">
-      <h3 class="sub-section-title">Log</h3>
-      <div class="flex">
-        <div><input type="date" id="logDate" /></div>
-        <div><input type="text" id="logDescription" placeholder="Description" /></div>
-      </div>
-      <button type="button" class="btn" onclick="addLogEntry()">Add Log Entry</button>
-      <textarea id="log" rows="5" readonly></textarea>
-    </div>
-
-    <!-- History -->
-    <div class="section">
-      <h3 class="sub-section-title">History</h3>
-      <div class="flex">
-        <div><input type="date" id="histDate" /></div>
-        <div><input type="time" id="histTime" /></div>
-      </div>
-      <input type="text" id="histLocation" placeholder="Location" />
-      <input type="text" id="histStatus" placeholder="Status" />
-      <input type="text" id="histUpdatedBy" placeholder="Updated By" />
-      <input type="text" id="histRemarks" placeholder="Remarks" />
-      <button type="button" class="btn" onclick="addHistoryEntry()">Add History Entry</button>
-      <div id="historyList"></div>
-    </div>
-
-    <!-- Save Button -->
-    <div class="section">
-      <button type="submit" class="btn">💾 Save Shipment</button>
+    <div class="form-actions">
+      <button type="button" onclick="saveShipment()">Save Shipment</button>
     </div>
   </form>
+</div>
 
-  <script src="js/gettracking.js"></script>
-  <script src="js/addtracking.js"></script>
-  <script>
-   document.getElementById('shipmentForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
+<script>
+const apiUrl = 'https://yourdomain.com/admin-panel/api.php'; // CHANGE THIS TO YOUR API URL
 
-  const shipmentData = {
-    TrackingNumber: document.getElementById('TrackingNumber').value,
-    Status: document.getElementById('Status').value,
-    ShipperName: document.getElementById('ShipperName').value,
-    ShipperPhone: document.getElementById('ShipperPhone').value,
-    ShipperAddress: document.getElementById('ShipperAddress').value,
-    ShipperEmail: document.getElementById('ShipperEmail').value,
-    ReceiverName: document.getElementById('ReceiverName').value,
-    ReceiverPhone: document.getElementById('ReceiverPhone').value,
-    ReceiverAddress: document.getElementById('ReceiverAddress').value,
-    ReceiverEmail: document.getElementById('ReceiverEmail').value,
-    EstimatedDeliveryDate: document.getElementById('EstimatedDeliveryDate').value,
-    ShippedDate: document.getElementById('ShippedDate').value,
-    FlightNumber: document.getElementById('FlightNumber').value,
-    PackageWeight: document.getElementById('PackageWeight').value,
-    Mode: document.getElementById('Mode').value,
-    Product: document.getElementById('Product').value,
-    Quantity: document.getElementById('Quantity').value,
-    Payment: document.getElementById('Payment').value,
-    TotalFreight: document.getElementById('TotalFreight').value,
-    log: getLogArray(), // assume this function returns array of {date, description}
-    history: getHistoryArray() // assume this function returns array of structured history entries
-  };
+function searchTracking() {
+  const tracking = document.getElementById('searchTracking').value.trim();
+  if (!tracking) return alert("Please enter a tracking number.");
+  fetch(`${apiUrl}?action=get&tracking=${tracking}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) return alert(data.error);
+      for (let key in data) {
+        if (document.getElementById(key)) {
+          document.getElementById(key).value = data[key];
+        }
+      }
+    });
+}
 
-  try {
-    const result = await saveShipment(shipmentData);
-    alert('Shipment saved successfully!');
-  } catch (error) {
-    alert(error.message || 'Error saving shipment.');
-  }
-});
+function saveShipment() {
+  const fields = [
+    "TrackingNumber", "Status", "ShipperName", "ShipperPhone", "ShipperAddress", "ShipperEmail",
+    "ReceiverName", "ReceiverPhone", "ReceiverAddress", "ReceiverEmail", "EstimatedDeliveryDate",
+    "ShippedDate", "FlightNumber", "PackageWeight", "Mode", "Product", "Quantity", "Payment",
+    "TotalFreight", "log", "history"
+  ];
+  let data = {};
+  fields.forEach(id => {
+    data[id] = document.getElementById(id)?.value || '';
+  });
 
-  </script>
+  fetch(`${apiUrl}?action=save`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(result => {
+    if (result.success) {
+      alert('Shipment saved successfully!');
+    } else {
+      alert('Failed to save shipment.');
+    }
+  });
+}
+</script>
+
 </body>
 </html>
