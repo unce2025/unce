@@ -60,10 +60,23 @@
         <p>Trusted by businesses worldwide to deliver cargo securely, on time, and across the globe.</p>
       </div>
 
-      <form id="trackingForm" novalidate>
-        <input type="text" id="trackingNumber" placeholder="UN123CE456" />
-        <button type="submit"><i class="fa fa-search"></i> Track your shipment</button>
-      </form>
+<!-- Your tracking form -->
+<form id="trackingForm" novalidate>
+  <input type="text" id="trackingNumber" placeholder="UN123CE456" />
+  <button type="submit"><i class="fa fa-search"></i> Track your shipment</button>
+</form>
+
+<!-- Place this at the bottom of the HTML file -->
+<script>
+document.getElementById('trackingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const trackingNumber = document.getElementById('trackingNumber').value.trim();
+  if (trackingNumber) {
+    window.location.href = status.php?track=${encodeURIComponent(trackingNumber)};
+  }
+});
+</script>
+      
     </section>
   </main>
 
