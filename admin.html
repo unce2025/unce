@@ -1,172 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel - United Nation Cargo Express</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #000;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
     }
-
-    header {
-      background-color: #001f3f;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.5rem;
-    }
-
     .container {
-      padding: 2rem;
-      max-width: 1000px;
+      max-width: 800px;
       margin: auto;
-      background: #fff;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 10px;
     }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      font-weight: bold;
-      margin-bottom: 0.3rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      padding: 0.6rem;
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
+      border-radius: 4px;
     }
-
-    .form-actions {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
     button {
-      background-color: #001f3f;
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
+      background-color: #002147;
+      color: white;
+      font-weight: bold;
       cursor: pointer;
     }
-
-    button:hover {
-      background-color: #003366;
-    }
-
-    @media (max-width: 600px) {
-      .form-group {
-        width: 100%;
-      }
-
-      .form-actions {
-        flex-direction: column;
-      }
+    h2 {
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Admin Panel - Manage Shipments</h2>
 
-<header>
-  United Nation Cargo Express - Admin Panel
-</header>
+    <input type="text" id="tracking" placeholder="Tracking Number" />
+    <button onclick="searchShipment()">Search</button>
 
-<div class="container">
-  <div class="form-group">
-    <label for="searchTracking">Search Tracking Number</label>
-    <input type="text" id="searchTracking" placeholder="Enter Tracking Number">
-    <button onclick="searchTracking()">Search</button>
+    <input type="text" id="status" placeholder="Status" />
+    <input type="text" id="shipper_name" placeholder="Shipper Name" />
+    <input type="text" id="shipper_phone" placeholder="Shipper Phone" />
+    <input type="text" id="shipper_address" placeholder="Shipper Address" />
+    <input type="email" id="shipper_email" placeholder="Shipper Email" />
+    <input type="text" id="receiver_name" placeholder="Receiver Name" />
+    <input type="text" id="receiver_phone" placeholder="Receiver Phone" />
+    <input type="text" id="receiver_address" placeholder="Receiver Address" />
+    <input type="email" id="receiver_email" placeholder="Receiver Email" />
+    <input type="date" id="estimated_delivery_date" placeholder="Estimated Delivery Date" />
+    <input type="date" id="shipped_date" placeholder="Shipped Date" />
+    <input type="text" id="flight_number" placeholder="Flight Number" />
+    <input type="text" id="package_weight" placeholder="Package Weight" />
+    <input type="text" id="mode" placeholder="Mode" />
+    <input type="text" id="product" placeholder="Product" />
+    <input type="number" id="quantity" placeholder="Quantity" />
+    <input type="text" id="payment" placeholder="Payment" />
+    <input type="text" id="total_freight" placeholder="Total Freight" />
+    <textarea id="history_json" placeholder="History JSON"></textarea>
+    <textarea id="log_json" placeholder="Log JSON"></textarea>
+
+    <button onclick="addShipment()">Add Shipment</button>
+    <button onclick="editShipment()">Update Shipment</button>
   </div>
 
-  <form id="shipmentForm">
-    <div class="form-group"><label>Tracking Number</label><input id="TrackingNumber" required></div>
-    <div class="form-group"><label>Status</label><input id="Status"></div>
-    <div class="form-group"><label>Shipper Name</label><input id="ShipperName"></div>
-    <div class="form-group"><label>Shipper Phone</label><input id="ShipperPhone"></div>
-    <div class="form-group"><label>Shipper Address</label><input id="ShipperAddress"></div>
-    <div class="form-group"><label>Shipper Email</label><input id="ShipperEmail"></div>
-    <div class="form-group"><label>Receiver Name</label><input id="ReceiverName"></div>
-    <div class="form-group"><label>Receiver Phone</label><input id="ReceiverPhone"></div>
-    <div class="form-group"><label>Receiver Address</label><input id="ReceiverAddress"></div>
-    <div class="form-group"><label>Receiver Email</label><input id="ReceiverEmail"></div>
-    <div class="form-group"><label>Estimated Delivery Date</label><input type="date" id="EstimatedDeliveryDate"></div>
-    <div class="form-group"><label>Shipped Date</label><input type="date" id="ShippedDate"></div>
-    <div class="form-group"><label>Flight Number</label><input id="FlightNumber"></div>
-    <div class="form-group"><label>Package Weight</label><input id="PackageWeight"></div>
-    <div class="form-group"><label>Mode</label><input id="Mode"></div>
-    <div class="form-group"><label>Product</label><input id="Product"></div>
-    <div class="form-group"><label>Quantity</label><input id="Quantity"></div>
-    <div class="form-group"><label>Payment</label><input id="Payment"></div>
-    <div class="form-group"><label>Total Freight</label><input id="TotalFreight"></div>
-    <div class="form-group"><label>Log (JSON format)</label><textarea id="log" rows="3"></textarea></div>
-    <div class="form-group"><label>History (JSON format)</label><textarea id="history" rows="4"></textarea></div>
+  <script>
+    const apiUrl = 'https://yourdomain.com/api.php'; // Replace with your actual PHP API URL
 
-    <div class="form-actions">
-      <button type="button" onclick="saveShipment()">Save Shipment</button>
-    </div>
-  </form>
-</div>
-
-<script>
-const apiUrl = 'https://yourdomain.com/admin-panel/api.php'; // CHANGE THIS TO YOUR API URL
-
-function searchTracking() {
-  const tracking = document.getElementById('searchTracking').value.trim();
-  if (!tracking) return alert("Please enter a tracking number.");
-  fetch(`${apiUrl}?action=get&tracking=${tracking}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.error) return alert(data.error);
-      for (let key in data) {
-        if (document.getElementById(key)) {
-          document.getElementById(key).value = data[key];
-        }
-      }
-    });
-}
-
-function saveShipment() {
-  const fields = [
-    "TrackingNumber", "Status", "ShipperName", "ShipperPhone", "ShipperAddress", "ShipperEmail",
-    "ReceiverName", "ReceiverPhone", "ReceiverAddress", "ReceiverEmail", "EstimatedDeliveryDate",
-    "ShippedDate", "FlightNumber", "PackageWeight", "Mode", "Product", "Quantity", "Payment",
-    "TotalFreight", "log", "history"
-  ];
-  let data = {};
-  fields.forEach(id => {
-    data[id] = document.getElementById(id)?.value || '';
-  });
-
-  fetch(`${apiUrl}?action=save`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(res => res.json())
-  .then(result => {
-    if (result.success) {
-      alert('Shipment saved successfully!');
-    } else {
-      alert('Failed to save shipment.');
+    function getFormData() {
+      return {
+        tracking_number: document.getElementById('tracking').value,
+        status: document.getElementById('status').value,
+        shipper_name: document.getElementById('shipper_name').value,
+        shipper_phone: document.getElementById('shipper_phone').value,
+        shipper_address: document.getElementById('shipper_address').value,
+        shipper_email: document.getElementById('shipper_email').value,
+        receiver_name: document.getElementById('receiver_name').value,
+        receiver_phone: document.getElementById('receiver_phone').value,
+        receiver_address: document.getElementById('receiver_address').value,
+        receiver_email: document.getElementById('receiver_email').value,
+        estimated_delivery_date: document.getElementById('estimated_delivery_date').value,
+        shipped_date: document.getElementById('shipped_date').value,
+        flight_number: document.getElementById('flight_number').value,
+        package_weight: document.getElementById('package_weight').value,
+        mode: document.getElementById('mode').value,
+        product: document.getElementById('product').value,
+        quantity: document.getElementById('quantity').value,
+        payment: document.getElementById('payment').value,
+        total_freight: document.getElementById('total_freight').value,
+        history_json: document.getElementById('history_json').value,
+        log_json: document.getElementById('log_json').value
+      };
     }
-  });
-}
-</script>
 
+    function searchShipment() {
+      const tracking = document.getElementById('tracking').value;
+      fetch(`${apiUrl}?action=search&tracking_number=${tracking}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.shipment) {
+            const d = data.shipment;
+            for (const key in d) {
+              if (document.getElementById(key)) {
+                document.getElementById(key).value = d[key];
+              }
+            }
+          } else {
+            alert("Shipment not found");
+          }
+        });
+    }
+
+    function addShipment() {
+      const shipmentData = getFormData();
+      fetch(`${apiUrl}?action=add`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(shipmentData)
+      })
+      .then(res => res.json())
+      .then(data => alert(data.message || "Shipment added successfully"));
+    }
+
+    function editShipment() {
+      const shipmentData = getFormData();
+      fetch(`${apiUrl}?action=edit`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(shipmentData)
+      })
+      .then(res => res.json())
+      .then(data => alert(data.message || "Shipment updated successfully"));
+    }
+  </script>
 </body>
 </html>
