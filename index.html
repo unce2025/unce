@@ -61,9 +61,47 @@
       </div>
 
 <form id="trackingForm" novalidate>
-        <input type="text" id="trackingNumber" placeholder="UN123CE456" />
-        <button type="submit"><i class="fa fa-search"></i> Track your shipment</button>
-      </form>
+  <input type="text" id="trackingNumber" placeholder="Enter Tracking Number" />
+  <button type="submit"><i class="fa fa-search"></i> Track your shipment</button>
+</form>
+
+<div id="pageLoading" style="display: none;">Loading...</div>
+
+<script>
+  const form = document.getElementById('trackingForm');
+  const input = document.getElementById('trackingNumber');
+  const pageLoading = document.getElementById('pageLoading');
+
+  // Example: Replace this array with real data fetched from your system
+  const validTrackingNumbers = ['UN123CE456', 'UN789CE000', 'UN999CE888'];
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const value = input.value.trim().toUpperCase();
+
+    input.classList.remove('error', 'shake');
+
+    if (value === '') {
+      input.classList.add('error', 'shake');
+      input.placeholder = 'Fill out this field';
+      return;
+    }
+
+    if (!validTrackingNumbers.includes(value)) {
+      alert('The tracking number entered does not match our records. Kindly verify the number and try again.');
+      input.classList.add('error');
+      input.value = '';
+      return;
+    }
+
+    pageLoading.style.display = 'flex';
+
+    setTimeout(() => {
+      window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
+    }, 1500);
+  });
+</script>
+
       
     </section>
   </main>
@@ -833,32 +871,6 @@ fetch('/.netlify/functions/addTracking', {
   body: JSON.stringify(data)
 });
  </script>
-  
-<script>
-  const form = document.getElementById('trackingForm');
-  const input = document.getElementById('trackingNumber');
-  const pageLoading = document.getElementById('pageLoading');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const value = input.value.trim();
-
-    input.classList.remove('error', 'shake');
-
-    if (value === '') {
-      input.classList.add('error', 'shake');
-      input.placeholder = 'Fill out this field';
-      return;
-    }
-
-    pageLoading.style.display = 'flex';
-
-    // Redirect to status.html with tracking number, even if it's invalid.
-    setTimeout(() => {
-      window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
-    }, 1500);
-  });
-</script>
 
 
 </html>
