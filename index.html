@@ -70,7 +70,7 @@
 <script>
   const form = document.getElementById('trackingForm');
   const input = document.getElementById('trackingNumber');
-  const pageLoading = document.getElementById('pageLoading'); // This is your loading animation
+  const pageLoading = document.getElementById('pageLoading');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -78,14 +78,16 @@
 
     input.classList.remove('error', 'shake');
 
-    if (value === '') {
+    if (!value) {
       input.classList.add('error', 'shake');
       input.placeholder = 'Fill out this field';
       return;
     }
 
-    // ✅ Replace this with your actual Google Apps Script URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyM1ofgZOgcW7wc-AwJu4FC6tACZYefKaxYhMu3_fwDGTvVHEO1QZHBUwBwwp9jP6Qc/exec?tracking=' + encodeURIComponent(value);
+    pageLoading.style.display = 'flex';
+
+    // ✅ Corrected parameter to match your Apps Script: trackingNumber
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyM1ofgZOgcW7wc-AwJu4FC6tACZYefKaxYhMu3_fwDGTvVHEO1QZHBUwBwwp9jP6Qc/exec?trackingNumber=' + encodeURIComponent(value);
 
     fetch(scriptURL)
       .then(res => res.json())
@@ -94,20 +96,20 @@
           alert('The tracking number entered does not match our records. Kindly verify the number and try again.');
           input.classList.add('error');
           input.value = '';
+          pageLoading.style.display = 'none';
           return;
         }
 
-        pageLoading.style.display = 'flex';
-        setTimeout(() => {
-          window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
-        }, 1500);
+        window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
       })
       .catch(error => {
         console.error('Error:', error);
         alert('Something went wrong. Please try again later.');
+        pageLoading.style.display = 'none';
       });
   });
 </script>
+
 
 
       
