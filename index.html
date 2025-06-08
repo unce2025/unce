@@ -833,6 +833,7 @@ fetch('/.netlify/functions/addTracking', {
   body: JSON.stringify(data)
 });
  </script>
+  
 <script>
   const form = document.getElementById('trackingForm');
   const input = document.getElementById('trackingNumber');
@@ -850,17 +851,9 @@ fetch('/.netlify/functions/addTracking', {
       return;
     }
 
-    // Optional: Remove this if you want to allow dynamic tracking numbers
-    if (value !== 'UN123CE456') {
-      alert('The tracking number entered does not match our records. Kindly verify the number and try again.');
-      input.classList.add('error');
-      input.value = '';
-      return;
-    }
-
     pageLoading.style.display = 'flex';
 
-    // FIXED: Add tracking number to the redirect URL
+    // Redirect to status.html with tracking number, even if it's invalid.
     setTimeout(() => {
       window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
     }, 1500);
