@@ -70,10 +70,7 @@
 <script>
   const form = document.getElementById('trackingForm');
   const input = document.getElementById('trackingNumber');
-  const pageLoading = document.getElementById('pageLoading');
-
-  // Example: Replace this array with real data fetched from your system
-  const validTrackingNumbers = ['UN123CE456', 'UN789CE000', 'UN999CE888'];
+  const pageLoading = document.getElementById('pageLoading'); // This is your loading animation
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -87,20 +84,31 @@
       return;
     }
 
-    if (!validTrackingNumbers.includes(value)) {
-      alert('The tracking number entered does not match our records. Kindly verify the number and try again.');
-      input.classList.add('error');
-      input.value = '';
-      return;
-    }
+    // ✅ Replace this with your actual Google Apps Script URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyM1ofgZOgcW7wc-AwJu4FC6tACZYefKaxYhMu3_fwDGTvVHEO1QZHBUwBwwp9jP6Qc/exec?tracking=' + encodeURIComponent(value);
 
-    pageLoading.style.display = 'flex';
+    fetch(scriptURL)
+      .then(res => res.json())
+      .then(data => {
+        if (!data || !data.shipment) {
+          alert('The tracking number entered does not match our records. Kindly verify the number and try again.');
+          input.classList.add('error');
+          input.value = '';
+          return;
+        }
 
-    setTimeout(() => {
-      window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
-    }, 1500);
+        pageLoading.style.display = 'flex';
+        setTimeout(() => {
+          window.location.href = `status.html?tracking=${encodeURIComponent(value)}`;
+        }, 1500);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Something went wrong. Please try again later.');
+      });
   });
 </script>
+
 
       
     </section>
